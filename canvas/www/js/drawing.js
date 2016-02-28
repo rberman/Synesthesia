@@ -13,7 +13,9 @@ var x = "black",
   y = 2;
 
 function init() {
-  canvas = document.getElementById('can');
+  canvas = document.getElementById('canvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   ctx = canvas.getContext("2d");
   w = canvas.width;
   h = canvas.height;
@@ -116,3 +118,4 @@ function findxy(res, e) {
     }
   }
 }
+
