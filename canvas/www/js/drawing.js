@@ -7,11 +7,15 @@ var canvas, ctx, flag = false,
   currX = 0,
   prevY = 0,
   currY = 0,
-  dot_flag = false;
+  dot_flag = false,
+  lines = [],
+  currentColor = "black",
+  lineSize = 2;
+  startX = 0,
+  startY = 0;
 
-var x = "black",
-  y = 2;
 
+// Method to set up canvas size and add event listeners for drawing
 function init() {
   canvas = document.getElementById('canvas');
   canvas.width = window.innerWidth;
@@ -34,62 +38,54 @@ function init() {
   }, false);
 }
 
+
+
+// Set the color of the pen
 function color(obj) {
   switch (obj.id) {
     case "green":
-      x = "green";
+      currentColor = "green";
       break;
     case "blue":
-      x = "blue";
+      currentColor = "blue";
       break;
     case "red":
-      x = "red";
+      currentColor = "red";
       break;
     case "yellow":
-      x = "yellow";
+      currentColor = "yellow";
       break;
     case "orange":
-      x = "orange";
+      currentColor = "orange";
       break;
     case "black":
-      x = "black";
+      currentColor = "black";
       break;
     case "white":
-      x = "white";
+      currentColor = "white";
       break;
   }
-  if (x == "white") y = 14;
-  else y = 2;
+  if (currentColor == "white") lineSize = 14;
+  else lineSize = 2;
 
 }
 
+
+// Draw function creates lines on canvas based on drawing
 function draw() {
   ctx.beginPath();
   ctx.moveTo(prevX, prevY);
   ctx.lineTo(currX, currY);
-  ctx.strokeStyle = x;
-  ctx.lineWidth = y;
+  ctx.strokeStyle = currentColor;
+  ctx.lineWidth = lineSize;
   ctx.stroke();
   ctx.closePath();
 }
 
-function erase() {
-  var m = confirm("Want to clear");
-  if (m) {
-    ctx.clearRect(0, 0, w, h);
-    document.getElementById("canvasimg").style.display = "none";
-  }
-}
 
-function save() {
-  document.getElementById("canvasimg").style.border = "2px solid";
-  var dataURL = canvas.toDataURL();
-  document.getElementById("canvasimg").src = dataURL;
-  document.getElementById("canvasimg").style.display = "inline";
-}
-
-function findxy(res, e) {
-  if (res == 'down') {
+function findxy(mouseAction, e) {
+  // When the mouse is pushed
+  if (mouseAction == 'down') {
     prevX = currX;
     prevY = currY;
     currX = e.clientX - canvas.offsetLeft;
@@ -99,16 +95,31 @@ function findxy(res, e) {
     dot_flag = true;
     if (dot_flag) {
       ctx.beginPath();
-      ctx.fillStyle = x;
+      ctx.fillStyle = currentColor;
       ctx.fillRect(currX, currY, 2, 2);
       ctx.closePath();
       dot_flag = false;
     }
+
+    // Remember where the line starts
+    startX = currX;
+    startY = currY;
   }
-  if (res == 'up' || res == "out") {
+
+  // When mouse is lifted
+  if (mouseAction == 'up' || mouseAction == "out") {
     flag = false;
+
+    // Create a line object and add it to the lines list
+    var line = {
+      start: [startX, startY],
+      end:[currX, currY]
+    };
+    lines.push(line);
   }
-  if (res == 'move') {
+
+  // When mouse is moving
+  if (mouseAction == 'move') {
     if (flag) {
       prevX = currX;
       prevY = currY;
@@ -119,3 +130,13 @@ function findxy(res, e) {
   }
 }
 
+// Methods for the color drop down
+$("#colorButton").click(function() {
+  document.getElementById("colorDropdown").classList.toggle("show");
+});
+
+window.onclick = function(event) {
+  if (!event.target.matches('#color')) {
+    document.getElementByID("colorDropdown").classList.toggle("hide");
+  }
+};
