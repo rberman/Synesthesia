@@ -112,8 +112,8 @@ function findxy(mouseAction, e) {
 
     // Create a line object and add it to the lines list
     var line = {
-      start: [startX, startY],
-      end:[currX, currY]
+      start: [(startX / canvas.width)*100.0, (startY / canvas.height)*100.0],
+      end:[(currX / canvas.width)*100.0, (currY / canvas.height)*100.0]
     };
     lines.push(line);
   }
@@ -130,13 +130,13 @@ function findxy(mouseAction, e) {
   }
 }
 
-// Methods for the color drop down
-$("#colorButton").click(function() {
-  document.getElementById("colorDropdown").classList.toggle("show");
-});
+// // Methods for the color drop down
+// $("#colorButton").click(function() {
+//   document.getElementById("colorDropdown").classList.toggle("show");
+// });
 
-window.onclick = function(event) {
-  if (!event.target.matches('#color')) {
-    document.getElementByID("colorDropdown").classList.toggle("hide");
-  }
-};
+// window.onclick = function(event) {
+//   if (!event.target.matches('#color')) {
+//     document.getElementByID("colorDropdown").classList.toggle("hide");
+//   }
+// };
