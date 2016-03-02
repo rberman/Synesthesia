@@ -8,7 +8,7 @@ noteDivider = 100.0/key.length;
 octaveDivider = 100.0/octaves.length;
 
 
-/** Returns a note, a String following the format of 
+/** Returns a note, a String following the format of
 * Wad.js, containing both tone and octave
 * the argument is a line object
 **/
@@ -37,7 +37,11 @@ function getNoteLength(line){
 	var endY = line.end[1];
 
 	var distance = Math.sqrt(Math.pow((startX-endX), 2) + Math.pow((startY-endY), 2));
-	var noteLength = distance / 100.0;
+	var noteLength = distance / 50.0;
+  if (noteLength < 0.1) {
+    noteLength = 0.1;
+  }
+
 	return noteLength;
 }
 
