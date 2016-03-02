@@ -3,16 +3,17 @@
  */
 
 var canvas, ctx, flag = false,
-  prevX = 0,
-  currX = 0,
-  prevY = 0,
-  currY = 0,
-  dot_flag = false,
-  lines = [],
-  currentColor = "black",
-  lineSize = 2;
-  startX = 0,
-  startY = 0;
+    prevX = 0,
+    currX = 0,
+    prevY = 0,
+    currY = 0,
+    dot_flag = false,
+    lines = [],
+    currentColor = "black",
+    lineSize = 2,
+    startX = 0,
+    startY = 0,
+    distance = 0;
 
 
 // Method to set up canvas size and add event listeners for drawing
@@ -104,6 +105,7 @@ function findxy(mouseAction, e) {
     // Remember where the line starts
     startX = currX;
     startY = currY;
+    distance = 0;
   }
 
   // When mouse is lifted
@@ -112,10 +114,11 @@ function findxy(mouseAction, e) {
 
     // Create a line object and add it to the lines list
     var line = {
-      start: [(startX / canvas.width)*100.0, (startY / canvas.height)*100.0],
-      end:[(currX / canvas.width)*100.0, (currY / canvas.height)*100.0]
+      start: [(startX / canvas.width) * 100.0, (startY / canvas.height) * 100.0],
+      lineLength: distance
     };
     lines.push(line);
+    console.log(distance);
   }
 
   // When mouse is moving
@@ -126,17 +129,7 @@ function findxy(mouseAction, e) {
       currX = e.clientX - canvas.offsetLeft;
       currY = e.clientY - canvas.offsetTop;
       draw();
+      distance ++;
     }
   }
 }
-
-// // Methods for the color drop down
-// $("#colorButton").click(function() {
-//   document.getElementById("colorDropdown").classList.toggle("show");
-// });
-
-// window.onclick = function(event) {
-//   if (!event.target.matches('#color')) {
-//     document.getElementByID("colorDropdown").classList.toggle("hide");
-//   }
-// };

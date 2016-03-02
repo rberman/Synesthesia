@@ -18,11 +18,7 @@ function getNotePitch(line){
 
 	//find the note
 	var noteIndex = Math.floor(startX/noteDivider);
-	console.log("Note Index");
-	console.log(noteIndex);
 	var pitch = key[noteIndex];
-	console.log("Pitch before Octave");
-	console.log(pitch);
 	//find the octave
 	var octaveIndex = Math.floor(startY/octaveDivider);
 	pitch = pitch.concat(octaves[octaveIndex]);
@@ -31,18 +27,11 @@ function getNotePitch(line){
 }
 
 function getNoteLength(line){
-	var startX = line.start[0];
-	var startY = line.start[1];
-	var endX = line.end[0];
-	var endY = line.end[1];
-
-	var distance = Math.sqrt(Math.pow((startX-endX), 2) + Math.pow((startY-endY), 2));
-	var noteLength = distance / 50.0;
-  if (noteLength < 0.1) {
-    noteLength = 0.1;
+  var duration = line.lineLength / 100;
+  if (duration < 0.1) {
+    duration = 0.1;
   }
-
-	return noteLength;
+	return duration;
 }
 
 function lineToNote(line){
@@ -74,17 +63,12 @@ function startSong(lines){
 }
 
 function playSong(noteIndex){
-	console.log(lines);
-	console.log(noteIndex);
-	console.log(notePitch);
-	console.log(noteLength);
 	//seconds for notes, but must convert to milliseconds for pause
 	var notePitch = notes[noteIndex].pitch;
 	var noteLength = notes[noteIndex].length;
 	var pause = noteLength*1000;
 
 	//line below for testing
-	//console.log(pitch);
 	var note = getNote('sine', notePitch,0.0,0.0,0.9,noteLength,0.0);
 	note.play();
 	noteIndex++;
