@@ -8,6 +8,24 @@
 }
 
 /*
+.scroll-content{
+  background:url("../img/coverPageBackgroundTest.jpg"); no-repeat: center fixed;
+  background-size: cover;
+}
+*/
+
+.paddingTitle {
+  padding-bottom: 100px;
+  padding-top: 100px;
+}
+
+.paddingWelcome{
+  padding-bottom: 50px;
+  padding-top: 100px;
+}
+
+
+/*
 .drawing{
   height: 1%;
   width: 1%

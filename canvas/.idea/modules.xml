@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Synesthesia.iml" filepath="$PROJECT_DIR$/.idea/Synesthesia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/canvas/.idea/Synesthesia.iml" filepath="$PROJECT_DIR$/canvas/.idea/Synesthesia.iml" />
       <module fileurl="file://$PROJECT_DIR$/canvas/canvas.iml" filepath="$PROJECT_DIR$/canvas/canvas.iml" />
     </modules>
   </component>
