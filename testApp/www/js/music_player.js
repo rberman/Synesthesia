@@ -2,7 +2,7 @@
 
 //lines = []; //The lines that we will turn to notes
 notes = [];
-octaves = ['7', '6', '5', '4'];
+octaves = ['6', '5', '4'];
 key = ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'];
 noteDivider = 100.0/key.length;
 octaveDivider = 100.0/octaves.length;
