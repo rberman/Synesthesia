@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('coverCtrl', function($scope) {})
 
-.controller('canvasController', function($scope, Chats) {
+.controller('canvasController', function($scope) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -10,6 +10,16 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+
+  $scope.callCanvasForEvent = function(mouseAction, e){
+    //transfers control over to drawing.js in hopes of fixing canvas problem.
+    findxy(mouseAction, e);
+  }
+
+  $scope.initCanvas = function(){
+    canvasInit();
+  }
+  /**
     $scope.canvas, $scope.ctx, $scope.flag = false,
     $scope.prevX = 0,
     $scope.currX = 0,
@@ -120,14 +130,9 @@ angular.module('starter.controllers', [])
         if ($scope.currentColor == "white") $scope.lineSize = 14;
         else $scope.lineSize = 2;
       }
+      **/
 
       $scope.convertToMusic = function(){
-        startSong($scope.lines);
+        startSong(lines);
       }
-})
-
-.controller('resultCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
 });

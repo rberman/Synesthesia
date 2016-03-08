@@ -7,8 +7,8 @@
     </div>
   </div>
 
-  <div ng-app="starter">
-      <canvas id="canvas" ng-mousemove="findxy('move', $event)" ng-mousedown="findxy('down', $event)" ng-mouseup="findxy('up', $event)" ng-mouseout="findxy('out', $event)"></canvas> 
+  <div ng-app="starter" ng-init="initCanvas()">
+      <canvas id="canvas" ng-mousemove="callCanvasForEvent('move', $event)" ng-mousedown="callCanvasForEvent('down', $event)" ng-mouseup="callCanvasForEvent('up', $event)" ng-mouseout="callCanvasForEvent('out', $event)"></canvas> 
       <button id="playButton" ng-click="convertToMusic()">PLAY</button>
   </div>
 
