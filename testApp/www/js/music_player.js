@@ -27,7 +27,7 @@ function getNotePitch(line){
 }
 
 function getNoteLength(line){
-  var duration = line.lineLength / 100;
+  var duration = line.lineLength / 50.0;
   if (duration < 0.1) {
     duration = 0.1;
   }
