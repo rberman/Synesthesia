@@ -16,8 +16,60 @@ var canvas, ctx, flag = false,
     distance = 0;
 
 
-// Method to set up canvas size and add event listeners for drawing
-function init() {
+//Creates module and sets up controller
+  var canvasAppMod = angular.module("canvasApp", []);
+  canvasAppMod.controller("canvasController", function($scope, $event){
+      $scope.findxy = function (mouseAction, e) {
+  // When the mouse is pushed
+        if (mouseAction == 'down') {
+          prevX = currX;
+          prevY = currY;
+          currX = e.clientX - canvas.offsetLeft;
+          currY = e.clientY - canvas.offsetTop;
+
+          flag = true;
+          dot_flag = true;
+          if (dot_flag) {
+            ctx.beginPath();
+            ctx.fillStyle = currentColor;
+            ctx.fillRect(currX, currY, 2, 2);
+            ctx.closePath();
+            dot_flag = false;
+          }
+
+          // Remember where the line starts
+          startX = currX;
+          startY = currY;
+          distance = 0;
+        }
+
+        // When mouse is lifted
+        if (mouseAction == 'up' || mouseAction == "out") {
+          flag = false;
+
+          // Create a line object and add it to the lines list
+          var line = {
+            start: [(startX / canvas.width) * 100.0, (startY / canvas.height) * 100.0],
+            lineLength: distance
+          };
+          lines.push(line);
+          console.log(distance);
+        }
+
+        // When mouse is moving
+        if (mouseAction == 'move') {
+          if (flag) {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+            draw();
+            distance ++;
+          }
+        }
+      }
+  });
+  /**
   canvas = document.getElementById('canvas');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -36,10 +88,7 @@ function init() {
   }, false);
   canvas.addEventListener("mouseout", function (e) {
     findxy('out', e)
-  }, false);
-}
-
-
+  }, false);**/
 
 // Set the color of the pen
 function color(obj) {
@@ -81,55 +130,4 @@ function draw() {
   ctx.lineWidth = lineSize;
   ctx.stroke();
   ctx.closePath();
-}
-
-
-function findxy(mouseAction, e) {
-  // When the mouse is pushed
-  if (mouseAction == 'down') {
-    prevX = currX;
-    prevY = currY;
-    currX = e.clientX - canvas.offsetLeft;
-    currY = e.clientY - canvas.offsetTop;
-
-    flag = true;
-    dot_flag = true;
-    if (dot_flag) {
-      ctx.beginPath();
-      ctx.fillStyle = currentColor;
-      ctx.fillRect(currX, currY, 2, 2);
-      ctx.closePath();
-      dot_flag = false;
-    }
-
-    // Remember where the line starts
-    startX = currX;
-    startY = currY;
-    distance = 0;
-  }
-
-  // When mouse is lifted
-  if (mouseAction == 'up' || mouseAction == "out") {
-    flag = false;
-
-    // Create a line object and add it to the lines list
-    var line = {
-      start: [(startX / canvas.width) * 100.0, (startY / canvas.height) * 100.0],
-      lineLength: distance
-    };
-    lines.push(line);
-    console.log(distance);
-  }
-
-  // When mouse is moving
-  if (mouseAction == 'move') {
-    if (flag) {
-      prevX = currX;
-      prevY = currY;
-      currX = e.clientX - canvas.offsetLeft;
-      currY = e.clientY - canvas.offsetTop;
-      draw();
-      distance ++;
-    }
-  }
 }

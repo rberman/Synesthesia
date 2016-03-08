@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'tab-drawing': {
           templateUrl: 'templates/tab-drawing.html',
-          controller: 'drawingCtrl'
+          controller: 'canvasController'
         }
       }
     })
