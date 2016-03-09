@@ -9,6 +9,7 @@ var canvas, ctx, flag = false,
     currY = 0,
     dot_flag = false,
     lines = [],
+    maxLineDistance = 50, //This can be experimented with
     currentColor = "black",
     lineSize = 2,
     startX = 0,
@@ -24,19 +25,6 @@ function canvasInit() {
   ctx = canvas.getContext("2d");
   w = canvas.width;
   h = canvas.height;
-  /**
-  canvas.addEventListener("mousemove", function (e) {
-    findxy('move', e)
-  }, false);
-  canvas.addEventListener("mousedown", function (e) {
-    findxy('down', e)
-  }, false);
-  canvas.addEventListener("mouseup", function (e) {
-    findxy('up', e)
-  }, false);
-  canvas.addEventListener("mouseout", function (e) {
-    findxy('out', e)
-  }, false);**/
 }
 
 
@@ -110,15 +98,10 @@ function findxy(mouseAction, e) {
 
   // When mouse is lifted
   if (mouseAction == 'up' || mouseAction == "out") {
-    flag = false;
-
-    // Create a line object and add it to the lines list
-    var line = {
-      start: [(startX / canvas.width) * 100.0, (startY / canvas.height) * 100.0],
-      lineLength: distance
-    };
-    lines.push(line);
-    console.log(distance);
+    if(flag == true){
+      flag = false;
+      createLineObj();
+    }
   }
 
   // When mouse is moving
@@ -131,5 +114,24 @@ function findxy(mouseAction, e) {
       draw();
       distance ++;
     }
+
+    //starts a new note when the user draws too long of a line
+    if(distance >= maxLineDistance){
+      console.log("Line exceeded " + distance);
+      createLineObj();
+      startX = currX;
+      startY = currY;
+      distance = 0;
+    }
   }
+}
+
+function createLineObj(){
+   // Create a line object and add it to the lines list
+    var line = {
+      start: [(startX / canvas.width) * 100.0, (startY / canvas.height) * 100.0],
+      lineLength: distance
+    };
+    lines.push(line);
+    console.log(distance);
 }
