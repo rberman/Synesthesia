@@ -6,6 +6,11 @@ octaves = ['6', '5', '4'];
 key = ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'];
 noteDivider = 100.0/key.length;
 octaveDivider = 100.0/octaves.length;
+octaveVolumes = {
+	'6' : 0.05,
+	'5' : 0.8,
+	'4' : 1.0
+}
 
 
 /** Returns a note, a String following the format of
@@ -34,13 +39,25 @@ function getNoteLength(line){
 	return duration;
 }
 
+function getNoteVolume(line){
+	var startY = line.start[1];
+
+	var octaveIndex = Math.floor(startY/octaveDivider);
+	var octave = octaves[octaveIndex];
+	var volume = octaveVolumes[octave];
+
+	return volume;
+}
+
 function lineToNote(line){
 	var notePitch = getNotePitch(line);
 	var noteLength = getNoteLength(line);
+	var noteVolume = getNoteVolume(line);
 
 	var note = {
 		pitch: notePitch,
-		length: noteLength
+		length: noteLength,
+		volume: noteVolume
 	};
 
 	return note;
@@ -66,11 +83,13 @@ function playSong(noteIndex){
 	//seconds for notes, but must convert to milliseconds for pause
 	var notePitch = notes[noteIndex].pitch;
 	var noteLength = notes[noteIndex].length;
+	var noteVolume = notes[noteIndex].volume;
 	var pause = noteLength*1000;
 
-	//line below for testing
-	var note = getNote('sine', notePitch,0.0,0.0,0.9,noteLength,0.0);
+	//TODO: should replace random literal values with variables.
+	var note = getNote('sine', notePitch,0.0,0.0,noteVolume,noteLength,0.0);
 	note.play();
+	console.log("Volume: " + noteVolume);
 	noteIndex++;
 	if(noteIndex < notes.length){
 		setTimeout(playSong, pause, noteIndex);
