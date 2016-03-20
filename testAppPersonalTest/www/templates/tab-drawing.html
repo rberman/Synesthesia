@@ -1,0 +1,20 @@
+<ion-view title="Drawing Page">
+  <ion-nav-buttons side="right">
+    <a class="button button-assertive" href="#/tab/result">FINISH</a>
+  </ion-nav-buttons>
+
+  <body>
+  <div id="colors">
+    <div id="red">
+      <div id="colorDropdown">
+      </div>
+    </div>
+  </div>
+
+  <div ng-app="starter" ng-init="initCanvas()">
+      <canvas id="canvas" ng-mousemove="callCanvasForEvent('move', $event)" ng-mousedown="callCanvasForEvent('down', $event)" ng-mouseup="callCanvasForEvent('up', $event)" ng-mouseout="callCanvasForEvent('out', $event)"></canvas>
+     <!-- <button id="playButton" ng-click="convertToMusic()">PLAY</button> -->
+  </div>
+
+  </body>
+</ion-view>
