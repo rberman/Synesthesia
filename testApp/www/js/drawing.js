@@ -120,7 +120,7 @@ function drawingToResults() {
 
   //set dimensions
   newCanvas.width = canvas.width;
-  newCanvas.height = canvas.height;
+  newCanvas.height = canvas.height * 0.8;
 
   //apply the old canvas to the new one
   context.drawImage(canvas, 0, 0);
