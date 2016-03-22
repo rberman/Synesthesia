@@ -19,8 +19,15 @@ angular.module('starter.controllers', [])
   $scope.initCanvas = function(){
     canvasInit();
   }
-  
+
   $scope.convertToMusic = function(){
     startSong(lines);
+  }
+
+  // Control color buttons
+  $scope.hideColors = true;
+  $scope.toggleColors = function() {
+    $scope.hideColors = !$scope.hideColors;
+
   }
 });

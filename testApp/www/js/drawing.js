@@ -10,7 +10,7 @@ var canvas, ctx, flag = false,
     dot_flag = false,
     lines = [],
     maxLineDistance = 50, //This can be experimented with
-    currentColor = "black",
+    currentColor = "red",
     lineSize = 2,
     startX = 0,
     startY = 0,
@@ -43,9 +43,6 @@ function color(obj) {
       break;
     case "yellow":
       currentColor = "yellow";
-      break;
-    case "orange":
-      currentColor = "orange";
       break;
     case "black":
       currentColor = "black";
