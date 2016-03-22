@@ -30,30 +30,8 @@ function canvasInit() {
 
 
 // Set the color of the pen
-function color(obj) {
-  switch (obj.id) {
-    case "green":
-      currentColor = "green";
-      break;
-    case "blue":
-      currentColor = "blue";
-      break;
-    case "red":
-      currentColor = "red";
-      break;
-    case "yellow":
-      currentColor = "yellow";
-      break;
-    case "black":
-      currentColor = "black";
-      break;
-    case "white":
-      currentColor = "white";
-      break;
-  }
-  if (currentColor == "white") lineSize = 14;
-  else lineSize = 2;
-
+function changeColor(newColor) {
+  currentColor = newColor;
 }
 
 

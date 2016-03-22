@@ -24,10 +24,32 @@ angular.module('starter.controllers', [])
     startSong(lines);
   }
 
-  // Control color buttons
+  // COLOR CONTROL BUTTONS
+  // Hide/show color buttons
   $scope.hideColors = true;
   $scope.toggleColors = function() {
     $scope.hideColors = !$scope.hideColors;
+  }
 
+  // Find what class a certain color button is
+  $scope.colorToClass = function(color) {
+    if (color == "red") return "button-assertive";
+    if (color == "yellow") return "button-energized";
+    if (color == "green") return "button-balanced";
+    if (color == "blue") return "button-positive";
+    if (color == "purple") return "button-royal";
+    if (color == "black") return "button-dark";
+  }
+
+  // Change the color of the pen and close the color menu
+  $scope.currentColor = "red";
+  $scope.changeColors = function(color) {
+    changeColor(color);
+    $scope.toggleColors();
+    $scope.currentColor = color;
+  }
+  // Returns the class for the current color
+  $scope.getCurrentColorClass = function() {
+    return $scope.colorToClass($scope.currentColor)
   }
 });
