@@ -18,3 +18,8 @@
   width: 5px !important;
   margin-top: 50px !important;
 }
+
+.homepage {
+  float: none !important;
+  width: 20% !important;
+}
