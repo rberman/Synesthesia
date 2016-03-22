@@ -5,10 +5,12 @@
 }
 
 #play-button {
-  margin-top: 10px !important;
-  margin-right: 50% !important;
-  float: none !important;
+  position: absolute;
   width: 50px !important;
+}
+
+.wrapper {
+  align-items: center;
 }
 
 .button {

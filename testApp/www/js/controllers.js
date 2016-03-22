@@ -26,6 +26,10 @@ angular.module('starter.controllers', [])
     canvasInit();
   };
 
+  $scope.convertToMusic = function(){
+    startSong(lines);
+  }
+
   //If you draw, the play button appears
   $scope.canvasIsBlank = true;
   $scope.showPlayButton = function() {
