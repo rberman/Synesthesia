@@ -16,12 +16,13 @@
     <canvas id="canvas"
             ng-mousemove="callCanvasForEvent('move', $event)"
             ng-mousedown="callCanvasForEvent('down', $event)"
-            ng-mouseup="callCanvasForEvent('up', $event)"
+            ng-mouseup="callCanvasForEvent('up', $event); showPlayButton()"
             ng-mouseout="callCanvasForEvent('out', $event)"></canvas>
-    <button id="playButton" ng-click="convertToMusic()">
-      Play
-      <!--<i class="fa fa-play-circle" style="font-size:36px;"></i>-->
-    </button>
+    <a class="button button-dark ng-hide" ng-hide="canvasIsBlank" ng-click="saveDrawing()" id="result-button" href="#/tab/result">
+      <i class="icon ion-play"></i>
+    </a>
+    <!--<button id="playButton" ng-click="convertToMusic()">-->
+
   </div>
 
   </body>

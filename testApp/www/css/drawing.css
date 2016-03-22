@@ -1,12 +1,19 @@
-#playButton {
+#result-button {
 	position: absolute;
-	top: 90%;
-	right: 50%;
+	bottom: 55px;
+	right: 5px;
+}
+
+#play-button {
+  margin-top: 10px !important;
+  margin-right: 50% !important;
+  float: none !important;
+  width: 50px !important;
 }
 
 .button {
   float: right;
-  clear: both;
+  clear: right;
   height: 3px;
   width: 3px;
   margin-top: 5px;

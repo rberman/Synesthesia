@@ -16,7 +16,6 @@ var canvas, ctx, flag = false,
     startY = 0,
     distance = 0;
 
-
 // Method to set up canvas size and add event listeners for drawing
 function canvasInit() {
   canvas = document.getElementById('canvas');
@@ -101,6 +100,7 @@ function findxy(mouseAction, e) {
   }
 }
 
+// Creates a line object for each line and adds it to the list of lines
 function createLineObj(){
    // Create a line object and add it to the lines list
     var line = {
@@ -109,4 +109,19 @@ function createLineObj(){
     };
     lines.push(line);
     console.log(distance);
+}
+
+// Saves the drawing so we can display it on the next page
+// From: http://stackoverflow.com/questions/3318565/any-way-to-clone-html5-canvas-element-with-its-content
+function drawingToResults() {
+  //create a new canvas
+  var newCanvas = document.getElementById('drawing-pic');
+  var context = newCanvas.getContext('2d');
+
+  //set dimensions
+  newCanvas.width = canvas.width;
+  newCanvas.height = canvas.height;
+
+  //apply the old canvas to the new one
+  context.drawImage(canvas, 0, 0);
 }
