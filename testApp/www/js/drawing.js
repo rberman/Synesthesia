@@ -125,3 +125,4 @@ function drawingToResults() {
   //apply the old canvas to the new one
   context.drawImage(canvas, 0, 0);
 }
+

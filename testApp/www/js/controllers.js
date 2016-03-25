@@ -6,6 +6,11 @@ angular.module('starter.controllers', [])
   $scope.convertToMusic = function(){
     startSong(lines);
   }
+
+  // Save image and put it on results page
+  $scope.saveDrawing = function() {
+    drawingToResults();
+  }
 })
 
 .controller('canvasController', function($scope) {
@@ -65,8 +70,4 @@ angular.module('starter.controllers', [])
     return $scope.colorToClass($scope.currentColor)
   };
 
-  // Save image and put it on results page
-  $scope.saveDrawing = function() {
-    drawingToResults();
-  }
 });

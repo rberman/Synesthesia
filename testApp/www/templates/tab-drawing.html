@@ -19,7 +19,7 @@
             ng-mouseup="callCanvasForEvent('up', $event); showPlayButton()"
             ng-mouseout="callCanvasForEvent('out', $event)"></canvas>
     <a class="button button-dark ng-hide"
-       ng-click="saveDrawing(); convertToMusic()"
+       ng-click="convertToMusic()"
        ng-hide="canvasIsBlank"
        id="result-button"
        href="#/tab/result">
