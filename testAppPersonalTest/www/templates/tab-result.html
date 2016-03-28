@@ -7,25 +7,14 @@
   </ion-nav-buttons>
   -->
   <ion-content class="has-header" padding="true">
-    <ion-pane>
-      <br><br>
-    </ion-pane>
-    <div ng-app="starter" ng-init="convertToMusic()" class="padding">
-      <div class="list">
-        <label class="item item-input padding">
-              <span class="input-label">Your Drawing:
-              </span>
-        </label>
+    <body class="wrapper">
+    <div ng-app="starter" ng-init="saveDrawing()">
+      <button id="play-button" class="button button-royal" ng-click="convertToMusic()">
+        <i class="icon ion-play"></i>
+      </button>
+      <canvas id="drawing-pic">abv</canvas>
       </div>
-    </div>
-
-
-    <div class="buttons">
-      <div class="col text-center">
-        <button class="button button-dark padding" ng-click="doSomething()">Save Button</button>
-        <button class="button button-assertive padding" ng-click="doSomethingElse()">Share Button</button>
-      </div>
-    </div>
+    </body>
 
   </ion-content>
 </ion-view>

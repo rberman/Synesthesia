@@ -30,33 +30,8 @@ function canvasInit() {
 
 
 // Set the color of the pen
-function color(obj) {
-  switch (obj.id) {
-    case "green":
-      currentColor = "green";
-      break;
-    case "blue":
-      currentColor = "blue";
-      break;
-    case "red":
-      currentColor = "red";
-      break;
-    case "yellow":
-      currentColor = "yellow";
-      break;
-    case "orange":
-      currentColor = "orange";
-      break;
-    case "black":
-      currentColor = "black";
-      break;
-    case "white":
-      currentColor = "white";
-      break;
-  }
-  if (currentColor == "white") lineSize = 14;
-  else lineSize = 2;
-
+function changeColor(newColor) {
+  currentColor = newColor;
 }
 
 
@@ -134,4 +109,19 @@ function createLineObj(){
     };
     lines.push(line);
     console.log(distance);
+}
+
+// Saves the drawing so we can display it on the next page
+// From: http://stackoverflow.com/questions/3318565/any-way-to-clone-html5-canvas-element-with-its-content
+function drawingToResults() {
+  //create a new canvas
+  var newCanvas = document.getElementById('drawing-pic');
+  var context = newCanvas.getContext('2d');
+
+  //set dimensions
+  newCanvas.width = canvas.width;
+  newCanvas.height = canvas.height * 0.8;
+
+  //apply the old canvas to the new one
+  context.drawImage(canvas, 0, 0);
 }
