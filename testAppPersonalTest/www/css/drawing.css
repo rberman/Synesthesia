@@ -13,11 +13,11 @@
   align-items: center;
 }
 
-.button {
+.color-button {
   float: right;
   height: 3px;
   width: 3px;
-  margin-top: 5px;
+  margin-top: 50px;
   margin-right: 5px;
 }
 

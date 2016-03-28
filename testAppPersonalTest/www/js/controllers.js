@@ -5,7 +5,7 @@ angular.module('starter.controllers', [])
 .controller('resultCtrl', function($scope) {
   $scope.convertToMusic = function(){
     startSong(lines);
-  }
+  };
 
   // Save image and put it on results page
   $scope.saveDrawing = function() {
@@ -25,11 +25,11 @@ angular.module('starter.controllers', [])
   $scope.callCanvasForEvent = function(mouseAction, e){
     //transfers control over to drawing.js in hopes of fixing canvas problem.
     findxy(mouseAction, e);
-  }
+  };
 
   $scope.initCanvas = function(){
     canvasInit();
-  }
+  };
 
   $scope.convertToMusic = function(){
     window.setTimeout(startSong(lines),3000)
@@ -59,7 +59,7 @@ angular.module('starter.controllers', [])
   };
 
   // Change the color of the pen and close the color menu
-  $scope.currentColor = "red";
+  $scope.currentColor = "black";
   $scope.changeColors = function(color) {
     changeColor(color);
     $scope.toggleColors();
