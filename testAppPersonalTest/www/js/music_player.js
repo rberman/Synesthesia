@@ -1,6 +1,3 @@
-//Everything here is untested
-
-//lines = []; //The lines that we will turn to notes
 notes = [];
 octaves = ['6', '5', '4'];
 key = ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'];

@@ -3,13 +3,15 @@ angular.module('starter.controllers', [])
   .controller('coverCtrl', function($scope) {})
 
   .controller('resultCtrl', function($scope) {
+    $scope.canvasImgURL;
     $scope.convertToMusic = function(){
       startSong(lines);
     }
 
-    // Save image and put it on results page
+    //save image and put it one results page
     $scope.saveDrawing = function() {
-      drawingToResults();
+      $scope.canvasImgURL = drawingToResults();
+      console.log($scope.canvasImgURL);
     }
   })
 
@@ -21,6 +23,12 @@ angular.module('starter.controllers', [])
     //
     //$scope.$on('$ionicView.enter', function(e) {
     //});
+
+    // Save image and put it on results page
+    // $scope.saveDrawing = function() {
+    //   $scope.canvasImgURL = drawingToResults();
+    //   //console.log($scope.canvasImgURL);
+    // }
 
     $scope.callCanvasForEvent = function(mouseAction, e){
       //transfers control over to drawing.js in hopes of fixing canvas problem.

@@ -65,7 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-cover': {
         templateUrl: 'templates/tab-result.html',
-        controller: 'canvasController'
+        controller: 'resultCtrl'
       }
     }
   })

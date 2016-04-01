@@ -115,14 +115,16 @@ function createLineObj(){
 // From: http://stackoverflow.com/questions/3318565/any-way-to-clone-html5-canvas-element-with-its-content
 function drawingToResults() {
   //create a new canvas
-  var newCanvas = document.getElementById('drawing-pic');
-  var context = newCanvas.getContext('2d');
+  var canvas = document.getElementById('canvas');
+  var canvasImg = canvas.toDataURL("drawing/png");
+  return canvasImg;
+  // var context = newCanvas.getContext('2d');
 
-  //set dimensions
-  newCanvas.width = canvas.width;
-  newCanvas.height = canvas.height * 0.8;
+  // //set dimensions
+  // newCanvas.width = canvas.width;
+  // newCanvas.height = canvas.height * 0.8;
 
-  //apply the old canvas to the new one
-  context.drawImage(canvas, 0, 0);
+  // //apply the old canvas to the new one
+  // context.drawImage(canvas, 0, 0);
 }
 

@@ -1,0 +1,10 @@
+#replay-button{
+	width: 50px !important;
+ 	margin-top: 5px !important;
+}
+
+#drawing-pic{
+	height: 50%;
+	width: 50%;
+	border: 1px solid #000 !important;
+}
