@@ -8,7 +8,7 @@ octaveVolumes = {
 	'5' : 0.8,
 	'4' : 1.0
 }
-
+musicPlaying = false;
 
 /** Returns a note, a String following the format of
 * Wad.js, containing both tone and octave
@@ -72,9 +72,12 @@ function compileNotes(lines){
 * plays the song from the notes array
 **/
 function startSong(lines){
-	compileNotes(lines); //TODO: this line for beta only. Will recompile notes every time you start the song.
-  window.setTimeout(playSong(0), 1000000); //TODO: fix this so page loads first then plays; quick fix is manual pause so page loads first
-	//playSong(0);
+	if(!musicPlaying){
+		musicPlaying = true;
+		compileNotes(lines); //TODO: this line for beta only. Will recompile notes every time you start the song.
+	  	window.setTimeout(1000000); //TODO: fix this so page loads first then plays; quick fix is manual pause so page loads first
+		playSong(0);
+	}
 }
 
 function playSong(noteIndex){
@@ -95,6 +98,7 @@ function playSong(noteIndex){
 	else{
 		//clears the notes when the song is over
 		notes = [];
+		musicPlaying = false;
 	}
 }
 
