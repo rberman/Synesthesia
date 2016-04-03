@@ -1,5 +1,6 @@
 /**
  * Created by rberman on 2/28/16.
+ * A large part of this code is from http://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse
  */
 
 var canvas, ctx, flag = false,
@@ -98,6 +99,13 @@ function findxy(mouseAction, e) {
       distance = 0;
     }
   }
+}
+
+// Erase entire canvas
+function clearCanvas() {
+  ctx.clearRect(0, 0, w, h);
+  lines = [];
+  notes = [];
 }
 
 // Creates a line object for each line and adds it to the list of lines
