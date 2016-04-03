@@ -22,6 +22,7 @@
     <button ng-click="changeColors('black')" ng-hide="hideColors" class="ng-hide button color-button button-dark"></button>
 
     <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-trash-a ng-hide"></button>
+    <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-refresh-empty ng-hide"></button>
 
     <canvas id="canvas"
             ng-mousemove="callCanvasForEvent('move', $event)"

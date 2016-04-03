@@ -29,12 +29,19 @@
 }
 
 .ion-trash-a {
-  margin-right: 25px;
+  right: 25px;
   float: right;
   height: 5px;
   width: 5px;
   top: 50px;
+}
 
+.ion-ios-refresh-empty{
+  right: 45px;
+  float: right;
+  height: 5px;
+  width: 5px;
+  top: 50px;
 }
 
 .homepage {

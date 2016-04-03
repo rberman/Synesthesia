@@ -6,12 +6,11 @@ angular.module('starter.controllers', [])
     $scope.canvasImgURL;
     $scope.convertToMusic = function(){
       startSong(lines);
-    }
+    };
 
     //save image and put it one results page
     $scope.saveDrawing = function() {
       $scope.canvasImgURL = drawingToResults();
-      console.log($scope.canvasImgURL);
     }
   })
 
@@ -41,7 +40,7 @@ angular.module('starter.controllers', [])
 
     $scope.convertToMusic = function(){
       startSong(lines);
-    }
+    };
 
     //Play button visibility (only if canvas is not blank)
     $scope.canvasIsBlank = true;
@@ -85,5 +84,10 @@ angular.module('starter.controllers', [])
     $scope.trash = function() {
       clearCanvas();
       $scope.hidePlayButton();
+    };
+
+    // Undo most recent line
+    $scope.undoLast = function() {
+      undo();
     }
   });
