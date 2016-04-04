@@ -58,8 +58,10 @@ function findxy(mouseAction, e) {
   if (mouseAction == 'down') {
     prevX = currX;
     prevY = currY;
-    currX = e.clientX - canvas.offsetLeft;
-    currY = e.clientY - canvas.offsetTop;
+    //alert(e.gesture.center.pageX);
+    //alert(e.originalEvent.gesture.center.pageX);
+    currX = e.gesture.center.pageX - canvas.offsetLeft;
+    currY = e.gesture.center.pageY - canvas.offsetTop;
     linesInLastStroke = 1;
 
     flag = true;
@@ -92,8 +94,8 @@ function findxy(mouseAction, e) {
     if (flag) {
       prevX = currX;
       prevY = currY;
-      currX = e.clientX - canvas.offsetLeft;
-      currY = e.clientY - canvas.offsetTop;
+      currX = e.gesture.center.pageX - canvas.offsetLeft;
+      currY = e.gesture.center.pageY - canvas.offsetTop;
       draw();
       distance ++;
     }
