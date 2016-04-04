@@ -89,5 +89,8 @@ angular.module('starter.controllers', [])
     // Undo most recent line
     $scope.undoLast = function() {
       undo();
+      if (canvasIsEmpty()) {
+        $scope.hidePlayButton();
+      }
     }
   });

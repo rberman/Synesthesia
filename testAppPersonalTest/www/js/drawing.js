@@ -167,3 +167,7 @@ function drawingToResults() {
   // context.drawImage(canvas, 0, 0);
 }
 
+// Returns true if there are no lines on the canvas
+function canvasIsEmpty() {
+  return lines.length == 0;
+}
