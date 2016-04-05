@@ -21,8 +21,13 @@
     <button ng-click="changeColors('purple')" ng-hide="hideColors" class="ng-hide button color-button button-royal"></button>
     <button ng-click="changeColors('black')" ng-hide="hideColors" class="ng-hide button color-button button-dark"></button>
 
+    <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-trash-a ng-hide"></button>
+    <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-refresh-empty ng-hide"></button>
 
     <canvas id="canvas"
+            on-touch="callCanvasForEvent('down', $event)"
+            on-release="callCanvasForEvent('up', $event)"
+            on-drag="callCanvasForEvent('move', $event)"
             ng-mousemove="callCanvasForEvent('move', $event)"
             ng-mousedown="callCanvasForEvent('down', $event)"
             ng-mouseup="callCanvasForEvent('up', $event); showPlayButton()"

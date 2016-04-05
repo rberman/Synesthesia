@@ -10,12 +10,11 @@ angular.module('starter.controllers', [])
     $scope.canvasImgURL;
     $scope.convertToMusic = function(){
       startSong(lines);
-    }
+    };
 
     //save image and put it one results page
     $scope.saveDrawing = function() {
       $scope.canvasImgURL = drawingToResults();
-      console.log($scope.canvasImgURL);
     }
   })
 
@@ -45,21 +44,18 @@ angular.module('starter.controllers', [])
 
     $scope.convertToMusic = function(){
       startSong(lines);
-    }
+    };
 
-    //If you draw, the play button appears
+    //Play button visibility (only if canvas is not blank)
     $scope.canvasIsBlank = true;
     $scope.showPlayButton = function() {
       $scope.canvasIsBlank = false;
     };
-
-    // COLOR CONTROL BUTTONS
-    // Hide/show color buttons
-    $scope.hideColors = true;
-    $scope.toggleColors = function() {
-      $scope.hideColors = !$scope.hideColors;
+    $scope.hidePlayButton = function() {
+      $scope.canvasIsBlank = true;
     };
 
+    // COLOR CONTROL BUTTONS
     // Find what class a certain color button is
     $scope.colorToClass = function(color) {
       if (color == "red") return "button-assertive";
@@ -68,6 +64,12 @@ angular.module('starter.controllers', [])
       if (color == "blue") return "button-positive";
       if (color == "purple") return "button-royal";
       if (color == "black") return "button-dark";
+    };
+
+    // Hide/show color buttons
+    $scope.hideColors = true;
+    $scope.toggleColors = function() {
+      $scope.hideColors = !$scope.hideColors;
     };
 
     // Change the color of the pen and close the color menu
@@ -82,4 +84,17 @@ angular.module('starter.controllers', [])
       return $scope.colorToClass($scope.currentColor)
     };
 
+    // Clear canvas
+    $scope.trash = function() {
+      clearCanvas();
+      $scope.hidePlayButton();
+    };
+
+    // Undo most recent line
+    $scope.undoLast = function() {
+      undo();
+      if (canvasIsEmpty()) {
+        $scope.hidePlayButton();
+      }
+    }
   });

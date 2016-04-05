@@ -97,7 +97,7 @@ function playSong(noteIndex){
 	}
 	else{
 		//clears the notes when the song is over
-		notes = [];
+		clearNotes();
 		musicPlaying = false;
 	}
 }
@@ -115,4 +115,9 @@ function getNote(_source,_pitch,_attack,_decay,_sustain,_hold,_release){
 	    }
 	});
 	return note;
+}
+
+// Clears all notes in list
+function clearNotes(){
+  notes = [];
 }
