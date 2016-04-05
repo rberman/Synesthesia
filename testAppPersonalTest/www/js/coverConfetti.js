@@ -99,7 +99,7 @@ colors = [
 // Add the Generator Here :)
 //
 
-generator1 = new particleGenerator(0, 0, W, 0, 100);
+generator1 = new particleGenerator(0, 0, W, 0, 200);
 
 
 
