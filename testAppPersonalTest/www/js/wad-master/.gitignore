@@ -1,11 +1,12 @@
-node_modules
-Packs
-todo.md
-.idea/.name
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/scopes/scope_settings.xml
-.idea/vcs.xml
-.idea/wad.iml
-.idea/workspace.xml
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+node_modules/
+platforms/
+plugins/
+out
+build
+.gradle
+.idea/worksapce.xml
+.DS_Store
+local.properties

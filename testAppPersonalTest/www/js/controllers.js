@@ -1,6 +1,10 @@
 angular.module('starter.controllers', [])
 
-  .controller('coverCtrl', function($scope) {})
+  .controller('coverCtrl', function($scope) {
+    $scope.createConfetti = function(){
+      updateConfetti();
+    }
+  })
 
   .controller('resultCtrl', function($scope) {
     $scope.canvasImgURL;

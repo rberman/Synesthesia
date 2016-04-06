@@ -15,9 +15,9 @@
 }
 */
 
-.paddingTitle {
-  padding-bottom: 100px;
-  padding-top: 100px;
+.paddingStartButton {
+  padding-bottom: 30px;
+  padding-top: 50px;
 }
 
 .paddingWelcome{
@@ -25,6 +25,22 @@
   padding-top: 100px;
 }
 
+.setBlackBgd{
+  background-color: black;
+}
+
+.logoImg{
+  background:url("../img/Drawing.png");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 80%;
+  height: 246px;
+  margin: auto;
+  z-index: -1;
+  position: relative;
+}
 
 /*
 .drawing{
