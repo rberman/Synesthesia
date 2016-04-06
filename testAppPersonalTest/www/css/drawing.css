@@ -26,6 +26,7 @@
   min-width: 5px !important;
   top: 65px;
   margin-right: 5px;
+  right: 30px;
 }
 
 .canvas-icon {
@@ -34,15 +35,15 @@
 }
 
 .ion-paintbrush{
-  right: 40px;
+  right: 25px;
 }
 
 .ion-ios-trash{
-  right: 80px;
+  right: 50px;
 }
 
 .ion-ios-undo {
-  right: 120px;
+  right: 75px;
 }
 
 .homepage {
