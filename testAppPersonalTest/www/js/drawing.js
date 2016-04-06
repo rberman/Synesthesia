@@ -12,7 +12,7 @@ var canvas, ctx, flag = false,
   dot_flag = false,
   lines = [],
   linesInLastStroke = 0,
-  cPushArray = new Array(), //Array storing old canvases for undo feature
+  cPushArray = [], //Array storing old canvases for undo feature
   lineStep = -1,
   maxLineDistance = 50, //This can be experimented with
   currentColor = "black",
@@ -120,10 +120,15 @@ function clearCanvas() {
 
 // Undo the most recent line drawn
 function undo() {
-  // Remove lines and notes
+  // Don't undo if canvas is already empty
+  if (canvasIsEmpty()) return;
+
+  // Remove removes most lines from last stroke in lines array
   if (lines.length >= linesInLastStroke){
     lines.splice(-linesInLastStroke, linesInLastStroke);
   }
+
+  // Removes graphic lines on the canvas
   if (lineStep > 0) {
     lineStep--;
     var canvasPic = new Image();
@@ -159,14 +164,6 @@ function drawingToResults() {
   var canvas = document.getElementById('canvas');
   var canvasImg = canvas.toDataURL("drawing/png");
   return canvasImg;
-  // var context = newCanvas.getContext('2d');
-
-  // //set dimensions
-  // newCanvas.width = canvas.width;
-  // newCanvas.height = canvas.height * 0.8;
-
-  // //apply the old canvas to the new one
-  // context.drawImage(canvas, 0, 0);
 }
 
 // Returns true if there are no lines on the canvas
