@@ -102,12 +102,13 @@ function playSong(noteIndex){
 		note.play();
 		console.log("Volume: " + noteVolume);
 		noteIndex++;
-		//the pause button could cause a race condition here, but it functions...
+
 		if(noteIndex < notes.length){
 			setTimeout(playSong, pause, noteIndex);
 		}
 		else{
-			stopMusic();
+			//to ensure that the play button turns to pause only after music is done
+			setTimeout(stopMusic, pause);
 		}
 	}
 }
