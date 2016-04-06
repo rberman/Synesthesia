@@ -10,10 +10,12 @@
 
   <body>
   <div ng-app="starter" ng-init="initCanvas()">
-    <button class="button color-button {{getCurrentColorClass()}}"
-            id="main-color-button"
-            ng-click="toggleColors()">
-    </button>
+    <button ng-click="toggleColors()"
+            class="button button-icon icon ion-ios-compose-outline {{getCurrentColorClass()}}"></button>
+    <!--<button class="button color-button {{getCurrentColorClass()}}"-->
+            <!--id="main-color-button"-->
+            <!--ng-click="toggleColors()">-->
+    <!--</button>-->
     <button ng-click="changeColors('red')" ng-hide="hideColors" class="ng-hide button color-button button-assertive"></button>
     <button ng-click="changeColors('yellow')" ng-hide="hideColors" class="ng-hide button color-button button-energized"></button>
     <button ng-click="changeColors('green')" ng-hide="hideColors" class="ng-hide button color-button button-balanced"></button>
@@ -21,8 +23,8 @@
     <button ng-click="changeColors('purple')" ng-hide="hideColors" class="ng-hide button color-button button-royal"></button>
     <button ng-click="changeColors('black')" ng-hide="hideColors" class="ng-hide button color-button button-dark"></button>
 
-    <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-trash-a ng-hide"></button>
-    <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-refresh-empty ng-hide"></button>
+    <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-ios-trash-outline ng-hide"></button>
+    <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-undo-outline ng-hide"></button>
 
     <canvas id="canvas"
             on-touch="callCanvasForEvent('down', $event)"

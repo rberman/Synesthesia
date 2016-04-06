@@ -1,5 +1,6 @@
 /**
  * Created by rberman on 2/28/16.
+ * CITATIONS:
  * A large part of this code is from http://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse
  * Undo functionality is from http://www.codicode.com/art/undo_and_redo_to_the_html5_canvas.aspx
  */
@@ -58,8 +59,6 @@ function findxy(mouseAction, e) {
   if (mouseAction == 'down') {
     prevX = currX;
     prevY = currY;
-    //alert(e.gesture.center.pageX);
-    //alert(e.originalEvent.gesture.center.pageX);
     currX = e.gesture.center.pageX - canvas.offsetLeft;
     currY = e.gesture.center.pageY - canvas.offsetTop;
     linesInLastStroke = 1;
@@ -102,7 +101,6 @@ function findxy(mouseAction, e) {
 
     //starts a new note when the user draws too long of a line
     if(distance >= maxLineDistance){
-      console.log("Line exceeded " + distance);
       createLineObj();
       startX = currX;
       startY = currY;
@@ -154,7 +152,6 @@ function createLineObj(){
     lineLength: distance
   };
   lines.push(line);
-  console.log(distance);
 }
 
 // Saves the drawing so we can display it on the next page

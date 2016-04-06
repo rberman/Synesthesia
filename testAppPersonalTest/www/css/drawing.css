@@ -17,27 +17,31 @@
 
 .color-button {
   float: right;
-  height: 3px;
-  width: 3px;
-  top: 50px;
+  line-height: 5px !important;
+  min-height: 30px !important;
+  width: 3px !important;
+  top: 60px;
   margin-right: 5px;
 }
 
-#main-color-button {
+.ion-ios-compose-outline {
+  float: right;
   height: 5px !important;
   width: 5px !important;
+  top: 50px;
+  margin-right: 30px;
 }
 
-.ion-trash-a {
-  right: 25px;
+.ion-ios-trash-outline {
+  margin-right: 30px;
   float: right;
   height: 5px;
   width: 5px;
   top: 50px;
 }
 
-.ion-ios-refresh-empty{
-  right: 45px;
+.ion-ios-undo-outline{
+  margin-right: 30px;
   float: right;
   height: 5px;
   width: 5px;
@@ -60,3 +64,5 @@
   width: 50%;
   border: 1px solid #000 !important;
 }
+
+
