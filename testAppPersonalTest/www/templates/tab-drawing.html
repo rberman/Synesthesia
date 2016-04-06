@@ -1,7 +1,7 @@
 <ion-view title="Draw Something!">
   <ion-nav-buttons side="right">
     <a class="button button-royal ng-hide"
-       ng-click="convertToMusic();"
+       ng-click="convertToMusic()"
        ng-hide="canvasIsBlank"
        href="#/tab/result">
       <i class="icon ion-play"></i>
@@ -9,7 +9,7 @@
   </ion-nav-buttons>
 
   <body>
-  <div ng-app="starter" ng-init="initCanvas()">
+  <div ng-app="starter" ng-init="initCanvas(); resetLines()">
     <button ng-click="toggleColors()" class="button button-icon icon ion-paintbrush canvas-icon {{getCurrentColorClass()}}"></button>
     <button ng-click="changeColors('red')" ng-hide="hideColors" class="ng-hide button color-button button-assertive"></button>
     <button ng-click="changeColors('yellow')" ng-hide="hideColors" class="ng-hide button color-button button-energized"></button>

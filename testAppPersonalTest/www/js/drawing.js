@@ -113,8 +113,13 @@ function findxy(mouseAction, e) {
 // Erase entire canvas
 function clearCanvas() {
   ctx.clearRect(0, 0, w, h);
-  lines = [];
+  clearLines();
   cPushArray = [];
+}
+
+// Empties lines array
+function clearLines() {
+  lines = []
 }
 
 // Undo the most recent line drawn
