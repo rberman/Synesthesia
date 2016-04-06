@@ -1,3 +1,7 @@
+.bar-header {
+  height: 50px; /*just an example*/
+}
+
 #result-button {
   position: absolute;
   float: right;
@@ -24,23 +28,7 @@
   margin-right: 5px;
 }
 
-.ion-ios-compose-outline {
-  float: right;
-  height: 5px !important;
-  width: 5px !important;
-  top: 50px;
-  margin-right: 30px;
-}
-
-.ion-ios-trash-outline {
-  margin-right: 30px;
-  float: right;
-  height: 5px;
-  width: 5px;
-  top: 50px;
-}
-
-.ion-ios-undo-outline{
+.canvas-icon {
   margin-right: 30px;
   float: right;
   height: 5px;

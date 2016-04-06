@@ -11,7 +11,7 @@
   <body>
   <div ng-app="starter" ng-init="initCanvas()">
     <button ng-click="toggleColors()"
-            class="button button-icon icon ion-ios-compose-outline {{getCurrentColorClass()}}"></button>
+            class="button button-icon icon ion-ios-compose-outline canvas-icon {{getCurrentColorClass()}}"></button>
     <!--<button class="button color-button {{getCurrentColorClass()}}"-->
             <!--id="main-color-button"-->
             <!--ng-click="toggleColors()">-->
@@ -23,8 +23,8 @@
     <button ng-click="changeColors('purple')" ng-hide="hideColors" class="ng-hide button color-button button-royal"></button>
     <button ng-click="changeColors('black')" ng-hide="hideColors" class="ng-hide button color-button button-dark"></button>
 
-    <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-ios-trash-outline ng-hide"></button>
-    <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-undo-outline ng-hide"></button>
+    <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-ios-trash-outline canvas-icon ng-hide"></button>
+    <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-undo-outline canvas-icon ng-hide"></button>
 
     <canvas id="canvas"
             on-touch="callCanvasForEvent('down', $event)"
