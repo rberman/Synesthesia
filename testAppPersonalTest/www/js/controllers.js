@@ -7,15 +7,43 @@ angular.module('starter.controllers', [])
   })
 
   .controller('resultCtrl', function($scope) {
+    $scope.musicPlayingControl;
     $scope.canvasImgURL;
+
+    //function taken from 'https://coderwall.com/p/ngisma/safe-apply-in-angular-js'
+    $scope.safeApply = function(fn) {
+      var phase = this.$root.$$phase;
+      if(phase == '$apply' || phase == '$digest') {
+        if(fn && (typeof(fn) === 'function')) {
+          fn();
+        }
+      } else {
+        this.$apply(fn);
+      }
+    };
+
+    $scope.handleReplayButton = function(){
+      if($scope.musicPlayingControl){
+        stopMusic();
+      }
+      else{
+        $scope.convertToMusic();
+      }
+    };
+
     $scope.convertToMusic = function(){
+      $scope.musicPlayingControl = true;
       startSong(lines);
     };
 
-    //save image and put it one results page
     $scope.saveDrawing = function() {
       $scope.canvasImgURL = drawingToResults();
-    }
+    };
+
+    $scope.setMusicPlayingControl = function(){
+      $scope.musicPlayingControl = musicPlaying;
+    };
+
   })
 
   .controller('canvasController', function($scope) {

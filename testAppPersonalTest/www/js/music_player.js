@@ -1,10 +1,10 @@
 notes = [];
 octaves = ['6', '5', '4'];
-key = ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'];
+key = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 noteDivider = 100.0/key.length;
 octaveDivider = 100.0/octaves.length;
 octaveVolumes = {
-	'6' : 0.05,
+	'6' : 0.2,
 	'5' : 0.8,
 	'4' : 1.0
 }
@@ -74,32 +74,57 @@ function compileNotes(lines){
 function startSong(lines){
 	if(!musicPlaying){
 		musicPlaying = true;
+		//TODO: This code is disgusting to me, but I can't find another solution right now
+		// var angularScope = angular.element(document.getElementById("replay-button")).scope();
+		// angularScope.$apply(function(){
+		// 	angularScope.$watch('musicPlaying', function(){
+		// 		angularScope.setMusicPlayingControl();
+		// 	});
+		// });
+
 		compileNotes(lines); //TODO: this line for beta only. Will recompile notes every time you start the song.
 	  	window.setTimeout(1000000); //TODO: fix this so page loads first then plays; quick fix is manual pause so page loads first
 		playSong(0);
+		// return;
 	}
 }
 
 function playSong(noteIndex){
+	if(musicPlaying){
 	//seconds for notes, but must convert to milliseconds for pause
-	var notePitch = notes[noteIndex].pitch;
-	var noteLength = notes[noteIndex].length;
-	var noteVolume = notes[noteIndex].volume;
-	var pause = noteLength*1000;
+		var notePitch = notes[noteIndex].pitch;
+		var noteLength = notes[noteIndex].length;
+		var noteVolume = notes[noteIndex].volume;
+		var pause = noteLength*1000;
 
-	//TODO: should replace random literal values with variables.
-	var note = getNote('sine', notePitch,0.0,0.0,noteVolume,noteLength,0.0);
-	note.play();
-	console.log("Volume: " + noteVolume);
-	noteIndex++;
-	if(noteIndex < notes.length){
-		setTimeout(playSong, pause, noteIndex);
+		//TODO: should replace random literal values with variables.
+		var note = getNote('sine', notePitch,0.0,0.0,noteVolume,noteLength,0.0);
+		note.play();
+		console.log("Volume: " + noteVolume);
+		noteIndex++;
+
+		if(noteIndex < notes.length){
+			setTimeout(playSong, pause, noteIndex);
+		}
+		else{
+			//to ensure that the play button turns to pause only after music is done
+			setTimeout(stopMusic, pause);
+		}
 	}
-	else{
-		//clears the notes when the song is over
-		clearNotes();
-		musicPlaying = false;
-	}
+}
+
+function stopMusic(){
+	//maybe think of a better method than clearing notes?
+	//when refactoring, could just manipulate noteIndex
+	clearNotes();
+	musicPlaying = false;
+
+	var angularScope = angular.element(document.getElementById("replay-button")).scope();
+	angularScope.safeApply(function(){
+		angularScope.$watch('musicPlaying', function(){
+			angularScope.setMusicPlayingControl();
+		});
+	});
 }
 
 function getNote(_source,_pitch,_attack,_decay,_sustain,_hold,_release){
