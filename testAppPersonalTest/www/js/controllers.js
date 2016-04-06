@@ -86,12 +86,12 @@ angular.module('starter.controllers', [])
     // COLOR CONTROL BUTTONS
     // Find what class a certain color button is
     $scope.colorToClass = function(color) {
-      if (color == "red") return "button-assertive";
-      if (color == "yellow") return "button-energized";
-      if (color == "green") return "button-balanced";
-      if (color == "blue") return "button-positive";
-      if (color == "purple") return "button-royal";
-      if (color == "black") return "button-dark";
+      if (color == "red") return "assertive";
+      if (color == "yellow") return "energized";
+      if (color == "green") return "balanced";
+      if (color == "blue") return "positive";
+      if (color == "purple") return "royal";
+      if (color == "black") return "dark";
     };
 
     // Hide/show color buttons
