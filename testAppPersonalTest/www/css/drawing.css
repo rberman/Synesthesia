@@ -24,16 +24,27 @@
   min-height: 30px !important;
   line-height: 5px !important;
   min-width: 5px !important;
-  top: 60px;
+  top: 65px;
   margin-right: 5px;
 }
 
 .canvas-icon {
-  margin-right: 40px;
   float: right;
   height: 5px;
   width: 5px;
   top: 60px;
+}
+
+.ion-paintbrush{
+  right: 40px;
+}
+
+.ion-ios-trash{
+  right: 80px;
+}
+
+.ion-ios-undo {
+  right: 120px;
 }
 
 .homepage {
