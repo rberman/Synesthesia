@@ -9,13 +9,11 @@
   <ion-content class="has-header" padding="true">
     <body class="wrapper">
     <div ng-app="starter" ng-init="saveDrawing(); convertToMusic()"> <!--ng-init="saveDrawing()"-->
+      <img id="drawing-pic" src="{{canvasImgURL}}"/>
       <button id="replay-button" class="button button-royal" ng-click="handleReplayButton()">
         <i ng-if="!musicPlayingControl" class="icon ion-play"></i>
         <i ng-if="musicPlayingControl" class="icon ion-pause"></i>
       </button>
-
-      <img id="drawing-pic" src="{{canvasImgURL}}"/>
-
       <!--<canvas id="drawing-pic"></canvas>-->
     </div>
     </body>

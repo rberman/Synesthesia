@@ -54,13 +54,14 @@
 /*I would like to separate these into a different file for result, but can't figure it out*/
 #replay-button{
   width: 50px !important;
-  margin-top: 5px !important;
+  margin: 5px auto !important;
+  display: block;
 }
 
 #drawing-pic{
   height: 50%;
   width: 50%;
   border: 1px solid #000 !important;
+  margin: auto;
+  display: block;
 }
-
-
