@@ -1,10 +1,24 @@
 #replay-button{
-	width: 50px !important;
- 	margin-top: 5px !important;
+  width: 50px !important;
+  margin: 5px auto !important;
+  display: block;
 }
 
 #drawing-pic{
-	height: 50%;
-	width: 50%;
-	border: 1px solid #000 !important;
+  margin: auto;
+  height: 100%;
+  width: 40%;
+  padding-bottom: 15%;
+  padding-top:15%;
+  display: block;
+}
+
+
+.frameImg{
+  background:url("../img/goldFrame.png");
+  background-repeat: no-repeat;
+  background-size: 65% 100%;
+  background-position: center;
+  margin: auto;
+  z-index: -1;
 }
