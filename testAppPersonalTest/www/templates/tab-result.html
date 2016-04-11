@@ -1,4 +1,4 @@
-<ion-view view-title="Results Page">
+<ion-view view-title="Listen to your masterpiece!">
   <!--
   <ion-nav-buttons side="primary">
     <button class="button" ng-click="doSomething()">
@@ -7,15 +7,18 @@
   </ion-nav-buttons>
   -->
   <ion-content class="has-header" padding="true">
-    <body class="wrapper">
-    <div ng-app="starter" ng-init="saveDrawing(); convertToMusic()"> <!--ng-init="saveDrawing()"-->
-      <img id="drawing-pic" src="{{canvasImgURL}}"/>
-      <button id="replay-button" class="button button-royal" ng-click="handleReplayButton()">
-        <i ng-if="!musicPlayingControl" class="icon ion-play"></i>
-        <i ng-if="musicPlayingControl" class="icon ion-pause"></i>
-      </button>
-      <!--<canvas id="drawing-pic"></canvas>-->
-    </div>
+    <body>
+      <div  ng-app="starter" ng-init="saveDrawing()" class ="frameImg"> <!--ng-init="saveDrawing()"-->
+        <img id="drawing-pic" src="{{canvasImgURL}}"/>
+       <!-- <img id = "frame-pic" src = "../img/goldFrame.png"/>
+       <!-- <img id="drawing-pic" src="{{canvasImgURL}}"/> -->
+      </div>
+      <div class = "col-md 4 text-center" ng-app="starter" ng-init="convertToMusic()" >
+        <button id="replay-button" class="button button-royal" ng-click="handleReplayButton()">
+          <i ng-if="!musicPlayingControl" class="icon ion-play"></i>
+          <i ng-if="musicPlayingControl" class="icon ion-pause"></i>
+        </button>
+      </div>
     </body>
 
   </ion-content>
