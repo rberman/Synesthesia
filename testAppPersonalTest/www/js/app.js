@@ -5,7 +5,63 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngStorage'])
+
+.factory ('StorageService', function ($localStorage) {
+
+  $localStorage = $localStorage.$default({
+    creations: []
+  });
+
+  //TODO: change the parameter to the creation name
+  var _get = function (creationIndex) {
+    //TODO: Just for testing. Soon look for ID
+    return $localStorage.creations[creationIndex];
+  };
+
+  var _getAll = function () {
+    console.log("Current Creations: " + $localStorage.creations);
+    return $localStorage.creations;
+  };
+
+  var _add = function (creation) {
+    $localStorage.creations.push(creation);
+    console.log("Creation Saved to Local Storage");
+    // console.log("\tCreation Lines: " + creation.lines);
+    // console.log("\tCreation IMG URL: " + creation.drawingURL);
+  }
+
+  var _remove = function (creation) {
+    $localStorage.creations.splice($localStorage.creations.indexOf(creation), 1);
+  }
+
+  var _removeAll = function () {
+    $localStorage.creations = [];
+  }
+
+  return {
+    getAll: _getAll,
+    get: _get,
+    add: _add,
+    remove: _remove,
+    removeAll: _removeAll
+  };
+})
+
+.controller( 'MainCtrl', function ($scope, StorageService) {
+  //Can use this later, but maybe not necessary to get all?
+  $scope.creations = StorageService.getAll();
+
+  //eventually require input
+  $scope.get = function(){
+    StorageService.get();
+  }
+
+  $scope.remove = function (thing) {
+    StorageService.remove(thing);
+  }
+
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

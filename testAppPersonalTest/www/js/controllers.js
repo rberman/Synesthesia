@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
   .controller('coverCtrl', function($scope) {
     $scope.createConfetti = function(){
@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
     }
   })
 
-  .controller('resultCtrl', function($scope) {
+  .controller('resultCtrl', function($scope, StorageService, $ionicPopup) {
     $scope.musicPlayingControl;
     $scope.canvasImgURL;
 
@@ -34,19 +34,75 @@ angular.module('starter.controllers', [])
     $scope.convertToMusic = function(){
       $scope.musicPlayingControl = true;
       startSong(lines);
+      console.log(lines);
     };
 
     $scope.saveDrawing = function() {
       $scope.canvasImgURL = drawingToResults();
     };
 
+    $scope.promptNameForCreation = function(){
+      //need to do this for ng-model to work in controller
+      $scope.userInput = {};
+      var myPopup = $ionicPopup.show({
+        template: '<input type="text" ng-model="userInput.creationName">',
+        title: 'Enter A Name For Your Creation',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Save</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if (!$scope.userInput.creationName) {
+                //don't allow the user to close unless he enters wifi password
+                console.log($scope.userInput.creationName);
+                e.preventDefault();
+              } else {
+                // return $scope.creationName;
+                $scope.saveCreationToLocalStorage($scope.userInput.creationName);
+              }
+            }
+          }
+        ]
+      });
+    }
+
+    $scope.saveCreationToLocalStorage = function(creationName){
+      $scope.creation = {
+          drawingURL: $scope.canvasImgURL,
+          drawingLines: lines,
+          name: creationName
+      };
+        console.log("Lines: " + $scope.creation.drawingLines);
+        $scope.add($scope.creation);
+    };
+
     $scope.setMusicPlayingControl = function(){
       $scope.musicPlayingControl = musicPlaying;
     };
 
+    $scope.add = function(creation){
+      StorageService.add(creation);
+    };
+
+    $scope.getAll = function(){
+      return StorageService.getAll();
+    };
+
+    $scope.checkStorage = function(){
+      var creationList = $scope.getAll();
+      var lastIndex = creationList.length - 1;
+      console.log(creationList[lastIndex].name);
+
+      for(var i = 0; i < lastIndex; i++){
+        console.log(creationList[i].drawingURL);
+      }
+    }
+
   })
 
-  .controller('canvasController', function($scope) {
+  .controller('canvasController', function($scope, StorageService, $ionicPopup) {
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
@@ -124,5 +180,43 @@ angular.module('starter.controllers', [])
       if (canvasIsEmpty()) {
         $scope.hidePlayButton();
       }
+    }
+
+    $scope.promptLoadWhichDrawing = function(){
+
+      $scope.userInput = {};
+      var myPopup = $ionicPopup.show({
+        template: '<input type="text" ng-model="userInput.creationName">',
+        title: 'Which Creation Would You Like To Load?',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Save</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              if (!$scope.userInput.creationName) {
+                //don't allow the user to close unless he enters wifi password
+                console.log($scope.userInput.creationName);
+                e.preventDefault();
+              } else {
+                // return $scope.creationName;
+                $scope.loadCreation($scope.userInput.creationName);
+              }
+            }
+          }
+        ]
+      });
+
+    }
+
+    $scope.loadCreation = function(creationIndex){
+      $scope.loadedCreation = StorageService.get(creationIndex);
+
+      lines = $scope.loadedCreation.drawingLines;
+
+      alert(JSON.stringify($scope.loadedCreation));
+      // console.log($scope.loadedCreation.drawingURL);
+      // console.log(JSON.stringify(lines));
     }
   });

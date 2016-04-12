@@ -1,6 +1,7 @@
 notes = [];
 octaves = ['6', '5', '4'];
-key = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+//C Blues scale
+key = ['C', 'Eb', 'F', 'Gb', 'G', 'Bb'];
 noteDivider = 100.0/key.length;
 octaveDivider = 100.0/octaves.length;
 octaveVolumes = {

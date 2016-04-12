@@ -8,6 +8,10 @@
     </a>
   </ion-nav-buttons>
 
+  <ion-nav-buttons side="center">
+    <a class="button button-royal" ng-click="promptLoadWhichDrawing()">Load</a>
+  </ion-nav-buttons>
+
   <body>
   <div ng-app="starter" ng-init="initCanvas(); resetLines()">
     <button ng-click="toggleColors()" class="button button-icon icon ion-paintbrush canvas-icon {{getCurrentColorClass()}}"></button>
