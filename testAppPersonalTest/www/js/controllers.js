@@ -180,7 +180,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       if (canvasIsEmpty()) {
         $scope.hidePlayButton();
       }
-    }
+    };
 
     $scope.promptLoadWhichDrawing = function(){
 

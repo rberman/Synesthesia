@@ -114,16 +114,19 @@ function findxy(mouseAction, e) {
 function clearCanvas() {
   ctx.clearRect(0, 0, w, h);
   clearLines();
-  cPushArray = [];
 }
 
 // Empties lines array
 function clearLines() {
-  lines = []
+  lines = [];
+  cPushArray = [];
 }
 
 // Undo the most recent line drawn
 function undo() {
+  console.log("BEFORE:");
+  console.log("Lines: " + lines.length);
+  console.log("cPushArray: " + cPushArray.length);
   // Don't undo if canvas is already empty
   if (canvasIsEmpty()) return;
 
@@ -143,10 +146,9 @@ function undo() {
     }
   }
 
-  // If this undo empties canvas, then reset drawing context
-  if (canvasIsEmpty()) {
-    cPushArray = [];
-  }
+  console.log("AFTER:");
+  console.log("Lines: " + lines.length);
+  console.log("cPushArray: " + cPushArray.length);
 }
 
 // Pushes current canvas to the cPushArray (so we can later undo lines)
