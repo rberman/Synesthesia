@@ -14,9 +14,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 
   //TODO: change the parameter to the creation name
-  var _get = function (creationIndex) {
+  var _get = function (creationName) {
     //TODO: Just for testing. Soon look for ID
-    return $localStorage.creations[creationIndex];
+    for(creationIndex in $localStorage.creations){
+      //returns the creation whose name matches creationName
+      if($localStorage.creations[creationIndex].name == creationName){
+        return $localStorage.creations[creationIndex];
+      }
+    }
+    
+    //error
+    console.log("Error! " + creationName + " is not a creation.");
   };
 
   var _getAll = function () {
@@ -53,8 +61,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $scope.creations = StorageService.getAll();
 
   //eventually require input
-  $scope.get = function(){
-    StorageService.get();
+  $scope.get = function(creationName){
+    StorageService.get(creationName);
   }
 
   $scope.remove = function (thing) {
