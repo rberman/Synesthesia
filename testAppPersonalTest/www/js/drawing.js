@@ -13,6 +13,7 @@ var canvas, ctx, flag = false,
   dot_flag = false,
   lines = [],
   linesInLastStroke = 0,
+  prevLineCxt = false,
   cPushArray = [], //Array storing old canvases for undo feature
   lineStep = -1,
   maxLineDistance = 50, //This can be experimented with
@@ -139,11 +140,16 @@ function undo() {
   if (lineStep > 0) {
     lineStep--;
     var canvasPic = new Image();
-    canvasPic.src = cPushArray[lineStep];
+    canvasPic.src = cPushArray.pop();
     ctx.clearRect(0, 0, w, h);
     canvasPic.onload = function () {
       ctx.drawImage(canvasPic, 0, 0);
     }
+  }
+
+  if (canvasIsEmpty()) {
+    cPushArray = [];
+    prevLineCxt = false;
   }
 
   console.log("AFTER:");
@@ -153,9 +159,13 @@ function undo() {
 
 // Pushes current canvas to the cPushArray (so we can later undo lines)
 function linePush() {
+  if (prevLineCxt) {
+    cPushArray.push(prevLineCxt);
+  }
   lineStep++;
   if (lineStep < cPushArray.length) { cPushArray.length = lineStep; }
-  cPushArray.push(document.getElementById('canvas').toDataURL());
+  prevLineCxt = document.getElementById('canvas').toDataURL();
+  //cPushArray.push(document.getElementById('canvas').toDataURL());
 }
 
 
