@@ -195,7 +195,9 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       $scope.loadPopup = $ionicPopup.show({
         // template: '<input type="text" ng-model="userInput.creationName">',
         template: '<ul>'+
-                      '<li class="loadButton" ng-repeat="creation in getAllCreations()" ng-click="loadCreation(creation.name); closePopup()">{{creation.name}}</li>'+
+                      '<li ng-repeat="creation in getAllCreations()" ng-click="loadCreation(creation.name); closePopup()">'+
+                      '<button class="loadButton button button-calm">{{creation.name}}</button>'+
+                      '</li>'+
                     '</ul>',
         title: 'Which Creation Would You Like To Load?',
         scope: $scope,
