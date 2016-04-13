@@ -3,7 +3,14 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   .controller('coverCtrl', function($scope) {
     $scope.createConfetti = function(){
       updateConfetti();
-    }
+    };
+
+    // Reset canvas
+    $scope.resetCanvas = function() {
+      clearCanvas();
+      $scope.hidePlayButton();
+      changeColor('black');
+    };
   })
 
   .controller('resultCtrl', function($scope, StorageService, $ionicPopup) {
