@@ -5,10 +5,11 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       updateConfetti();
     };
 
-    // Clear canvas
-    $scope.trash = function() {
+    // Reset canvas
+    $scope.resetCanvas = function() {
       clearCanvas();
       $scope.hidePlayButton();
+      changeColor('black');
     };
   })
 
