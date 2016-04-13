@@ -121,6 +121,7 @@ function clearCanvas() {
 function clearLines() {
   lines = [];
   cPushArray = [];
+  prevLineCxt = false;
 }
 
 // Undo the most recent line drawn
