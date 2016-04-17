@@ -57,7 +57,7 @@
   border-style: solid;
   border-width: 1px;
   border-color: black;
-  display: block;
+  display: inline;
   padding: 1px;
   margin: 2px auto;
 }
