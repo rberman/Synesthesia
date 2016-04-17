@@ -173,6 +173,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
             onTap: function(e) {
               clearHistory();
               $scope.hidePlayButton();
+              $scope.currentColor = 'black';
             }
           }
         ]
@@ -184,6 +185,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       undo();
       if (canvasIsEmpty()) {
         $scope.hidePlayButton();
+        $scope.currentColor = 'black';
       }
     };
 
