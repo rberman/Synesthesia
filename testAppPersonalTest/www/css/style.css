@@ -23,10 +23,43 @@
   width: 80%;
   height: 300px;
   margin: auto;
-  z-index: -2;
+  z-index: 0;
   position: relative;
 }
 
 .aboutUs{
   padding-top: 100px;
+}
+
+.infoBackground{
+  background:url("../img/Logo%20King%20Kunta.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  clear: both;
+  z-index: 0;
+
+}
+
+.item .item-content{
+  background-color: black;
+  color: white;
+}
+
+
+.infoBackground .row .col{
+  color: white;
+  font-family: Lucida Sans Unicode;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+
+}
+
+.infoBackground .information{
+  color: white;
+  font-family: Pacifico;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
 }
