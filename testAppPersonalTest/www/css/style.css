@@ -34,16 +34,17 @@
 .infoBackground{
   background:url("../img/Logo%20King%20Kunta.jpg") no-repeat;
   background-position: center;
-  background-size: cover;
-  width: 100%;
+  background-size: 100% 100%;
   clear: both;
   z-index: 0;
-
 }
 
 .item .item-content{
+  width: 100%;
   background-color: black;
   color: white;
+  text-align-all: center;
+
 }
 
 
@@ -52,7 +53,7 @@
   font-family: Lucida Sans Unicode;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 14px;
 
 }
 
