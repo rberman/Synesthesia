@@ -177,8 +177,22 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
     // Clear canvas
     $scope.trash = function() {
-      clearCanvas();
-      $scope.hidePlayButton();
+      var trashPopup = $ionicPopup.show({
+        // template: '<input type="text" ng-model="userInput.creationName">',
+        title: 'Are You Sure You Want to Delete This Drawing?',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Delete</b>',
+            type: 'button-assertive',
+            onTap: function(e) {
+              clearCanvas();
+              $scope.hidePlayButton();
+            }
+          }
+        ]
+      });
     };
 
     // Undo most recent line
@@ -196,7 +210,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
         // template: '<input type="text" ng-model="userInput.creationName">',
         template: '<ul>'+
                       '<li ng-repeat="creation in getAllCreations()" ng-click="loadCreation(creation.name); closePopup()">'+
-                      '<button class="loadButton button button-calm">{{creation.name}}</button>'+
+                      '<div class="loadButton button button-calm"><p>{{creation.name}}</p> <button class="button button-assertive icon ion-ios-trash"></button></div>'+
                       '</li>'+
                     '</ul>',
         title: 'Which Creation Would You Like To Load?',
