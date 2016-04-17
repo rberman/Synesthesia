@@ -3,7 +3,14 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   .controller('coverCtrl', function($scope) {
     $scope.createConfetti = function(){
       updateConfetti();
-    }
+    };
+
+    // Reset canvas
+    $scope.resetCanvas = function() {
+      clearCanvas();
+      $scope.hidePlayButton();
+      changeColor('black');
+    };
   })
 
   .controller('resultCtrl', function($scope, StorageService, $ionicPopup) {
@@ -170,8 +177,22 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
     // Clear canvas
     $scope.trash = function() {
-      clearCanvas();
-      $scope.hidePlayButton();
+      var trashPopup = $ionicPopup.show({
+        // template: '<input type="text" ng-model="userInput.creationName">',
+        title: 'Are You Sure You Want to Delete This Drawing?',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Delete</b>',
+            type: 'button-assertive',
+            onTap: function(e) {
+              clearCanvas();
+              $scope.hidePlayButton();
+            }
+          }
+        ]
+      });
     };
 
     // Undo most recent line
@@ -180,38 +201,40 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       if (canvasIsEmpty()) {
         $scope.hidePlayButton();
       }
-    }
+    };
 
     $scope.promptLoadWhichDrawing = function(){
 
       $scope.userInput = {};
-      var myPopup = $ionicPopup.show({
-        template: '<input type="text" ng-model="userInput.creationName">',
+      $scope.loadPopup = $ionicPopup.show({
+        // template: '<input type="text" ng-model="userInput.creationName">',
+        template: '<ul>'+
+                      '<li ng-repeat="creation in getAllCreations()" ng-click="loadCreation(creation.name); closePopup()">'+
+                      '<div class="loadButton button button-calm"><p>{{creation.name}}</p> <button class="button button-assertive icon ion-ios-trash"></button></div>'+
+                      '</li>'+
+                    '</ul>',
         title: 'Which Creation Would You Like To Load?',
         scope: $scope,
         buttons: [
-          { text: 'Cancel' },
           {
-            text: '<b>Save</b>',
-            type: 'button-positive',
-            onTap: function(e) {
-              if (!$scope.userInput.creationName) {
-                //don't allow the user to close unless he enters wifi password
-                console.log($scope.userInput.creationName);
-                e.preventDefault();
-              } else {
-                // return $scope.creationName;
-                $scope.loadCreation($scope.userInput.creationName);
-              }
-            }
+            text: 'Cancel', 
+            type: 'button-assertive'
           }
         ]
       });
 
     }
 
-    $scope.loadCreation = function(creationIndex){
-      $scope.loadedCreation = StorageService.get(creationIndex);
+    $scope.closePopup = function(){
+      $scope.loadPopup.close();
+    }
+
+    $scope.getAllCreations = function(){
+      return StorageService.getAll();
+    }
+
+    $scope.loadCreation = function(creationName){
+      $scope.loadedCreation = StorageService.get(creationName);
 
       lines = $scope.loadedCreation.drawingLines;
 

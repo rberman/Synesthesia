@@ -1,26 +1,11 @@
 /* Empty. Add your own CSS if you like */
-/*
-.buttons{
-  padding: 300px 0px 0px 0px;
-}
-
-.input-label{
-  height: 250px;
-}
-
-/*
-.scroll-content{
-  background:url("../img/coverPageBackgroundTest.jpg"); no-repeat: center fixed;
-  background-size: cover;
-}
-*/
 
 .paddingStartButton {
   padding-bottom: 30px;
   padding-top: 50px;
 }
 
-.paddingWelcome{
+.information{
   padding-bottom: 50px;
   padding-top: 100px;
 }
@@ -30,21 +15,18 @@
 }
 
 .logoImg{
-  background:url("../img/Drawing.png");
+  background:url("../img/Logo%20King%20Kunta.jpg");
   background-color: black;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   width: 80%;
-  height: 246px;
+  height: 300px;
   margin: auto;
-  z-index: -1;
+  z-index: -2;
   position: relative;
 }
 
-/*
-.drawing{
-  height: 1%;
-  width: 1%
+.aboutUs{
+  padding-top: 100px;
 }
-*/

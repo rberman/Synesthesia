@@ -51,5 +51,13 @@
   width: 20% !important;
 }
 
-/*I would like to separate these into a different file for result, but can't figure it out*/
-
+.loadButton {
+  height: 40px;
+  width: 90%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  display: inline;
+  padding: 1px;
+  margin: 2px auto;
+}
