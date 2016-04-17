@@ -7,10 +7,8 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
     // Reset canvas
     $scope.resetCanvas = function() {
-      clearCanvas();
-      $scope.hidePlayButton();
-      changeColor('black');
-    };
+      clearHistory();
+    }
   })
 
   .controller('resultCtrl', function($scope, StorageService, $ionicPopup) {
@@ -73,7 +71,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           }
         ]
       });
-    }
+    };
 
     $scope.saveCreationToLocalStorage = function(creationName){
       $scope.creation = {
@@ -110,19 +108,6 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   })
 
   .controller('canvasController', function($scope, StorageService, $ionicPopup) {
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
-
-    // Save image and put it on results page
-    // $scope.saveDrawing = function() {
-    //   $scope.canvasImgURL = drawingToResults();
-    //   //console.log($scope.canvasImgURL);
-    // }
 
     $scope.callCanvasForEvent = function(mouseAction, e){
       //transfers control over to drawing.js in hopes of fixing canvas problem.
@@ -178,7 +163,6 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     // Clear canvas
     $scope.trash = function() {
       var trashPopup = $ionicPopup.show({
-        // template: '<input type="text" ng-model="userInput.creationName">',
         title: 'Are You Sure You Want to Delete This Drawing?',
         scope: $scope,
         buttons: [
@@ -187,7 +171,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
             text: '<b>Delete</b>',
             type: 'button-assertive',
             onTap: function(e) {
-              clearCanvas();
+              clearHistory();
               $scope.hidePlayButton();
             }
           }
@@ -217,21 +201,21 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
         scope: $scope,
         buttons: [
           {
-            text: 'Cancel', 
+            text: 'Cancel',
             type: 'button-assertive'
           }
         ]
       });
 
-    }
+    };
 
     $scope.closePopup = function(){
       $scope.loadPopup.close();
-    }
+    };
 
     $scope.getAllCreations = function(){
       return StorageService.getAll();
-    }
+    };
 
     $scope.loadCreation = function(creationName){
       $scope.loadedCreation = StorageService.get(creationName);
@@ -239,7 +223,5 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       lines = $scope.loadedCreation.drawingLines;
 
       alert(JSON.stringify($scope.loadedCreation));
-      // console.log($scope.loadedCreation.drawingURL);
-      // console.log(JSON.stringify(lines));
     }
   });

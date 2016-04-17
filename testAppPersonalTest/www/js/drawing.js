@@ -12,10 +12,9 @@ var canvas, ctx, flag = false,
   currY = 0,
   dot_flag = false,
   lines = [],
-  linesInLastStroke = 0,
-  prevLineCxt = false,
-  cPushArray = [], //Array storing old canvases for undo feature
-  lineStep = -1,
+  prevDrawSteps = [], // Array storing old versions of the canvas for undo feature
+  numNotesInLine = [], // Array storing how many notes (in lines) were in each drawn line for undo feature
+  linesInLastStroke = 1, // Variable to hold the number of notes in the most recent line drawn
   maxLineDistance = 50, //This can be experimented with
   currentColor = "black",
   lineSize = 2,
@@ -31,7 +30,6 @@ function canvasInit() {
   ctx = canvas.getContext("2d");
   w = canvas.width;
   h = canvas.height;
-  linePush();
 }
 
 
@@ -85,7 +83,8 @@ function findxy(mouseAction, e) {
     if(flag == true){
       flag = false;
       createLineObj();
-      linePush();
+      pushDrawStep();
+      numNotesInLine.push(linesInLastStroke);
     }
   }
 
@@ -111,62 +110,42 @@ function findxy(mouseAction, e) {
   }
 }
 
-// Erase entire canvas
-function clearCanvas() {
-  ctx.clearRect(0, 0, w, h);
-  clearLines();
-}
-
-// Empties lines array
-function clearLines() {
+// Clears the canvas, and all history associated with the canvas (lines, notes, etc.)
+function clearHistory() {
   lines = [];
-  cPushArray = [];
-  prevLineCxt = false;
+  prevDrawSteps = [];
+  numNotesInLine = [];
+  linesInLastStroke = 1;
+  ctx.clearRect(0, 0, w, h);
+  currentColor = "black";
 }
 
 // Undo the most recent line drawn
 function undo() {
-  console.log("BEFORE:");
-  console.log("Lines: " + lines.length);
-  console.log("cPushArray: " + cPushArray.length);
   // Don't undo if canvas is already empty
   if (canvasIsEmpty()) return;
 
   // Remove removes most lines from last stroke in lines array
-  if (lines.length >= linesInLastStroke){
-    lines.splice(-linesInLastStroke, linesInLastStroke);
-  }
+  var numLinesToRemove = numNotesInLine.pop();
+  lines.splice(-numLinesToRemove, numLinesToRemove);
 
   // Removes graphic lines on the canvas
-  if (lineStep > 0) {
-    lineStep--;
-    var canvasPic = new Image();
-    canvasPic.src = cPushArray.pop();
-    ctx.clearRect(0, 0, w, h);
-    canvasPic.onload = function () {
-      ctx.drawImage(canvasPic, 0, 0);
-    }
-  }
+  prevDrawSteps.pop();  // Most recent element is what is currently shown so get rid of it
+  var canvasPic = new Image();
+  canvasPic.src = prevDrawSteps[prevDrawSteps.length - 1];  // Get last line version of the canvas in the array
+  ctx.clearRect(0, 0, w, h);  // Reset the canvas, then add the last version
+  canvasPic.onload = function () {
+    ctx.drawImage(canvasPic, 0, 0);
+  };
 
   if (canvasIsEmpty()) {
-    cPushArray = [];
-    prevLineCxt = false;
+    clearHistory();
   }
-
-  console.log("AFTER:");
-  console.log("Lines: " + lines.length);
-  console.log("cPushArray: " + cPushArray.length);
 }
 
-// Pushes current canvas to the cPushArray (so we can later undo lines)
-function linePush() {
-  if (prevLineCxt) {
-    cPushArray.push(prevLineCxt);
-  }
-  lineStep++;
-  if (lineStep < cPushArray.length) { cPushArray.length = lineStep; }
-  prevLineCxt = document.getElementById('canvas').toDataURL();
-  //cPushArray.push(document.getElementById('canvas').toDataURL());
+// Pushes current canvas to the prevDrawSteps (so we can later undo lines)
+function pushDrawStep() {
+  prevDrawSteps.push(document.getElementById('canvas').toDataURL());
 }
 
 
@@ -184,9 +163,8 @@ function createLineObj(){
 // From: http://stackoverflow.com/questions/3318565/any-way-to-clone-html5-canvas-element-with-its-content
 function drawingToResults() {
   //create a new canvas
-  var canvas = document.getElementById('canvas');
-  var canvasImg = canvas.toDataURL("drawing/png");
-  return canvasImg;
+  //var canvas = document.getElementById('canvas');
+  return canvas.toDataURL("drawing/png");
 }
 
 // Returns true if there are no lines on the canvas
