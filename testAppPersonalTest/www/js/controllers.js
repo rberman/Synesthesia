@@ -75,9 +75,11 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
     $scope.saveCreationToLocalStorage = function(creationName){
       $scope.creation = {
-          drawingURL: $scope.canvasImgURL,
+          name: creationName,
           drawingLines: lines,
-          name: creationName
+          drawingSteps: prevDrawSteps,
+          notesInLine: numNotesInLine,
+          drawingCtx : ctx
       };
         console.log("Lines: " + $scope.creation.drawingLines);
         $scope.add($scope.creation);
@@ -196,7 +198,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
         // template: '<input type="text" ng-model="userInput.creationName">',
         template: '<ul>'+
                       '<li ng-repeat="creation in getAllCreations()" ng-click="loadCreation(creation.name); closePopup()">'+
-                      '<div class="loadButton button button-calm"><p>{{creation.name}}</p> <button class="button button-assertive icon ion-ios-trash"></button></div>'+
+                      '<button class="loadButton button button-calm">{{creation.name}}</button>'+
                       '</li>'+
                     '</ul>',
         title: 'Which Creation Would You Like To Load?',
@@ -223,7 +225,14 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       $scope.loadedCreation = StorageService.get(creationName);
 
       lines = $scope.loadedCreation.drawingLines;
+      prevDrawSteps = $scope.loadedCreation.drawingSteps;
+      numNotesInLine = $scope.loadedCreation.notesInLine;
+      ctx = $scope.loadedCreation.drawingCtx;
 
-      alert(JSON.stringify($scope.loadedCreation));
+      console.log(lines);
+      console.log(prevDrawSteps);
+      console.log(numNotesInLine);
+      console.log(ctx);
+      // alert(JSON.stringify($scope.loadedCreation));
     }
   });
