@@ -229,6 +229,13 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       numNotesInLine = $scope.loadedCreation.notesInLine;
 
       loadImage();
+
+      if(lines.length > 0){
+        $scope.canvasIsBlank = false;
+      }
+      //enable play
+      console.log($scope.canvasIsBlank);
+     
       console.log(lines);
       console.log(prevDrawSteps);
       console.log(numNotesInLine);
