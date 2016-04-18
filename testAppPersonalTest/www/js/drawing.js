@@ -143,6 +143,15 @@ function undo() {
   }
 }
 
+function loadImage(){
+  var canvasPic = new Image();
+  canvasPic.src = prevDrawSteps[prevDrawSteps.length - 1];  // Get last line version of the canvas in the array
+  ctx.clearRect(0, 0, w, h);  // Reset the canvas, then add the last version
+  canvasPic.onload = function () {
+    ctx.drawImage(canvasPic, 0, 0);
+  };
+}
+
 // Pushes current canvas to the prevDrawSteps (so we can later undo lines)
 function pushDrawStep() {
   prevDrawSteps.push(document.getElementById('canvas').toDataURL());

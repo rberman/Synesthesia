@@ -78,8 +78,8 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           name: creationName,
           drawingLines: lines,
           drawingSteps: prevDrawSteps,
-          notesInLine: numNotesInLine,
-          drawingCtx : ctx
+          notesInLine: numNotesInLine
+          // drawingCtx : ctx
       };
         console.log("Lines: " + $scope.creation.drawingLines);
         $scope.add($scope.creation);
@@ -227,12 +227,12 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       lines = $scope.loadedCreation.drawingLines;
       prevDrawSteps = $scope.loadedCreation.drawingSteps;
       numNotesInLine = $scope.loadedCreation.notesInLine;
-      ctx = $scope.loadedCreation.drawingCtx;
 
+      loadImage();
       console.log(lines);
       console.log(prevDrawSteps);
       console.log(numNotesInLine);
-      console.log(ctx);
+      // console.log(ctx);
       // alert(JSON.stringify($scope.loadedCreation));
     }
   });
