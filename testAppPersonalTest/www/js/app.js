@@ -33,10 +33,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   };
 
   var _add = function (creation) {
+    if(_get(creation.name) != null){
+      return -1;
+    }
+
     $localStorage.creations.push(creation);
     console.log("Creation Saved to Local Storage");
-    // console.log("\tCreation Lines: " + creation.lines);
-    // console.log("\tCreation IMG URL: " + creation.drawingURL);
+  }
+
+  var _overwrite = function(creation){
+    _remove(creation.name);
+    _add(creation);
   }
 
   var _remove = function (creationName) {
@@ -57,7 +64,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     get: _get,
     add: _add,
     remove: _remove,
-    removeAll: _removeAll
+    removeAll: _removeAll,
+    overwrite: _overwrite
   };
 })
 

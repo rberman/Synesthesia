@@ -82,15 +82,28 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           // drawingCtx : ctx
       };
         console.log("Lines: " + $scope.creation.drawingLines);
-        $scope.add($scope.creation);
+
+      if(StorageService.add($scope.creation) == -1){ //should save if the name doesn't already exist
+        var trashPopup = $ionicPopup.show({
+          title: $scope.creation.name +' already exists. Do you want to overwrite it?',
+          scope: $scope,
+          buttons: [
+            { text: 'Cancel' },
+            {
+              text: '<b>Overwrite</b>',
+              type: 'button-assertive',
+              onTap: function(e) {
+                StorageService.overwrite($scope.creation);
+              }
+            }
+          ]
+        });
+      }
+
     };
 
     $scope.setMusicPlayingControl = function(){
       $scope.musicPlayingControl = musicPlaying;
-    };
-
-    $scope.add = function(creation){
-      StorageService.add(creation);
     };
 
     $scope.getAll = function(){
