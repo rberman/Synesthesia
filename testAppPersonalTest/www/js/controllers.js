@@ -198,8 +198,8 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
         // template: '<input type="text" ng-model="userInput.creationName">',
         template: '<ul>'+
                       '<li ng-repeat="creation in getAllCreations()">'+
-                      '<button ng-click="loadCreation(creation.name); closePopup()" class="loadButton button button-calm">{{creation.name}}</button>'+
-                      '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
+                          '<button ng-click="loadCreation(creation.name); closePopup()" class="loadButton button button-calm">{{creation.name}}</button>'+
+                          '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
                       '</li>'+
                     '</ul>',
         title: 'Which Creation Would You Like To Load?',
