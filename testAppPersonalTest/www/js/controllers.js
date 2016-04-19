@@ -197,8 +197,9 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       $scope.loadPopup = $ionicPopup.show({
         // template: '<input type="text" ng-model="userInput.creationName">',
         template: '<ul>'+
-                      '<li ng-repeat="creation in getAllCreations()" ng-click="loadCreation(creation.name); closePopup()">'+
-                      '<button class="loadButton button button-calm">{{creation.name}}</button>'+
+                      '<li ng-repeat="creation in getAllCreations()">'+
+                      '<button ng-click="loadCreation(creation.name); closePopup()" class="loadButton button button-calm">{{creation.name}}</button>'+
+                      '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
                       '</li>'+
                     '</ul>',
         title: 'Which Creation Would You Like To Load?',
@@ -221,6 +222,23 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       return StorageService.getAll();
     };
 
+    $scope.deleteCreation = function(creationName){
+      var trashPopup = $ionicPopup.show({
+        title: 'Are You Sure You Want to Permanently Delete This Drawing?',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Delete</b>',
+            type: 'button-assertive',
+            onTap: function(e) {
+              StorageService.remove(creationName);
+            }
+          }
+        ]
+      });
+    };
+
     $scope.loadCreation = function(creationName){
       $scope.loadedCreation = StorageService.get(creationName);
 
@@ -235,7 +253,6 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       }
       //enable play
       console.log($scope.canvasIsBlank);
-     
       console.log(lines);
       console.log(prevDrawSteps);
       console.log(numNotesInLine);

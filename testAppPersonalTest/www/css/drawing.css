@@ -53,11 +53,27 @@
 
 .loadButton {
   height: 40px;
-  width: 90%;
+  width: 75%;
+  float: left;
   border-style: solid;
   border-width: 1px;
   border-color: black;
-  display: inline;
+  display: inline-block;
   padding: 1px;
-  margin: 2px auto;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.deleteDrawingButton {
+  height: 40px;
+  width: 25%;
+  float:right;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  display: inline-block;
+  padding: 1px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 0;
 }

@@ -39,8 +39,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     // console.log("\tCreation IMG URL: " + creation.drawingURL);
   }
 
-  var _remove = function (creation) {
-    $localStorage.creations.splice($localStorage.creations.indexOf(creation), 1);
+  var _remove = function (creationName) {
+    for(creationIndex in $localStorage.creations){
+      //returns the creation whose name matches creationName
+      if($localStorage.creations[creationIndex].name == creationName){
+        $localStorage.creations.splice(creationIndex, 1);
+      }
+    }
   }
 
   var _removeAll = function () {
