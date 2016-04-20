@@ -22,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         return $localStorage.creations[creationIndex];
       }
     }
-    
+
     //error
     console.log("Error! " + creationName + " is not a creation.");
   };
@@ -88,6 +88,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+
+    ion.sound({
+      sounds: [
+        {name: "testSound"}
+      ],
+
+      // main config
+      path: "js/ion-sound/sounds/",
+      preload: true,
+      multiplay: false,
+      volume: 0.9
+    });
+
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);

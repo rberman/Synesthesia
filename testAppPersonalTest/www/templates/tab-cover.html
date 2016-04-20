@@ -1,9 +1,9 @@
 <ion-view view-title = "">
   <ion-content ng-app = "starter" class="padding setBlackBgd">
-    <div class = "logoImg">
+    <div class = "logoImg" ng-init = "coverMusic()"> <!--TODO: Create something to handle cover music transition -->
       <canvas id = "coverCanvas" ng-init="createConfetti()"></canvas>
     </div>
-    <a class="button button-block button-assertive" href="#/tab/drawing" ng-click="resetCanvas()">START</a>
+    <a class="button button-block button-assertive" href="#/tab/drawing" ng-click="stopCoverMusic(); resetCanvas()">START</a>
     <div class = "col-md 4 text-center"><a class="button calm-large button-calm ion-information-circled " href = "#/tab/info"></a></div>
   </ion-content>
 </ion-view>

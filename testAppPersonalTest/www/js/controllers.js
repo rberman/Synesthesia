@@ -1,9 +1,18 @@
 angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
   .controller('coverCtrl', function($scope) {
+
     $scope.createConfetti = function(){
       updateConfetti();
     };
+    //Need to fix this. Preliminary test that music can start and stop
+    $scope.coverMusic = function(){
+      ion.sound.play("testSound", {loop:true});
+    }
+
+    $scope.stopCoverMusic = function(){
+      ion.sound.stop("testSound");
+    }
 
     // Reset canvas
     $scope.resetCanvas = function() {
