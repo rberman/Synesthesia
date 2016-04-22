@@ -14,7 +14,10 @@
 
   <body>
   <div ng-app="starter" ng-init="initCanvas()">
+    <!-- Paintbrush for color buttons -->
     <button ng-click="toggleColors()" class="button button-icon icon ion-paintbrush canvas-icon {{getCurrentColorClass()}}"></button>
+
+    <!-- Color buttons - appear only when paintbrush is clicked -->
     <button ng-click="changeColors('red')" ng-hide="hideColors" class="ng-hide button color-button button-assertive"></button>
     <button ng-click="changeColors('yellow')" ng-hide="hideColors" class="ng-hide button color-button button-energized"></button>
     <button ng-click="changeColors('green')" ng-hide="hideColors" class="ng-hide button color-button button-balanced"></button>
@@ -22,9 +25,11 @@
     <button ng-click="changeColors('purple')" ng-hide="hideColors" class="ng-hide button color-button button-royal"></button>
     <button ng-click="changeColors('black')" ng-hide="hideColors" class="ng-hide button color-button button-dark"></button>
 
+    <!-- Trash and undo buttons -->
     <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-ios-trash canvas-icon ng-hide"></button>
     <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-undo canvas-icon ng-hide"></button>
 
+    <!-- Drawing Canvas -->
     <canvas id="canvas"
             on-touch="callCanvasForEvent('down', $event)"
             on-release="callCanvasForEvent('up', $event); showPlayButton()"
