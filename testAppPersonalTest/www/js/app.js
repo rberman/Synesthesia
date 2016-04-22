@@ -22,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         return $localStorage.creations[creationIndex];
       }
     }
-    
+
     //error
     console.log("Error! " + creationName + " is not a creation.");
   };
@@ -33,10 +33,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   };
 
   var _add = function (creation) {
+    if(_get(creation.name) != null){
+      return -1;
+    }
+
     $localStorage.creations.push(creation);
     console.log("Creation Saved to Local Storage");
-    // console.log("\tCreation Lines: " + creation.lines);
-    // console.log("\tCreation IMG URL: " + creation.drawingURL);
+  }
+
+  var _overwrite = function(creation){
+    _remove(creation.name);
+    _add(creation);
   }
 
   var _remove = function (creationName) {
@@ -57,7 +64,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     get: _get,
     add: _add,
     remove: _remove,
-    removeAll: _removeAll
+    removeAll: _removeAll,
+    overwrite: _overwrite
   };
 })
 
@@ -80,6 +88,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+
+    ion.sound({
+      sounds: [
+        {name: "testSound"}
+      ],
+
+      // main config
+      path: "js/ion-sound/sounds/",
+      preload: true,
+      multiplay: false,
+      volume: 0.9
+    });
+
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
