@@ -20,9 +20,15 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     }
   })
 
-  .controller('resultCtrl', function($scope, StorageService, $ionicPopup) {
+  .controller('resultCtrl', function($scope, StorageService, $ionicPopup, $ionicHistory) {
     $scope.musicPlayingControl;
     $scope.canvasImgURL;
+
+    //controls back-button. This hack is temporarily necessary to stop the music when we return from the result page
+    $scope.myGoBack = function(){
+      $scope.stopMusic();
+      $ionicHistory.goBack();
+    }
 
     //function taken from 'https://coderwall.com/p/ngisma/safe-apply-in-angular-js'
     $scope.safeApply = function(fn) {
@@ -38,12 +44,16 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
     $scope.handleReplayButton = function(){
       if($scope.musicPlayingControl){
-        stopMusic();
+        $scope.stopMusic();
       }
       else{
         $scope.convertToMusic();
       }
     };
+
+    $scope.stopMusic = function(){
+      stopMusic();
+    }
 
     $scope.convertToMusic = function(){
       $scope.musicPlayingControl = true;
