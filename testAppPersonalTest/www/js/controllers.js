@@ -84,7 +84,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     };
 
     // Save current drawing so it can be returned to
-    $scope.saveDrawing = function() {
+    $scope.transferDrawing = function() {
       $scope.canvasImgURL = drawingToResults();
     };
 
