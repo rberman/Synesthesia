@@ -37,7 +37,6 @@ Note that if you are not installing in a OS X system, do not add the ios platfor
 
 ```bash
 $ionic platform add ios
-$ionic platform add android 
 ```
 
 ##Testing Synesthesia
