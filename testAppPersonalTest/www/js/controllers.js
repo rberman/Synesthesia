@@ -256,11 +256,14 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       else {
         $scope.loadPopup = $ionicPopup.show({
           // template: '<input type="text" ng-model="userInput.creationName">',
-          template: '<ul>' +
-          '<li ng-repeat="creation in getAllCreations()">' +
-          '<button ng-click="loadCreation(creation.name); closePopup(loadPopup)" class="loadButton button button-calm">{{creation.name}}</button>' +
-          '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
-          '</li>' +
+          template: 
+          '<ul>' +
+            '<li ng-repeat="creation in getAllCreations()">' +
+              '<div>'+
+                '<button ng-click="loadCreation(creation.name); closePopup(loadPopup)" class="loadButton button button-calm">{{creation.name}}</button>' +
+                '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
+              '</div>'+
+            '</li>' +
           '</ul>' +
           '<p ng-if="getAllCreations().length == 0" style="text-align: center"> You have no saved Creations </p>',
           title: 'Which Creation Would You Like To Load?',

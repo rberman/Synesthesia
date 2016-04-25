@@ -44,7 +44,13 @@
   background-color: black;
   color: white;
   text-align-all: center;
+}
 
+.item .item-content .item .item-content{
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align-all: center;
 }
 
 
