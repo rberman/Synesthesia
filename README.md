@@ -28,7 +28,7 @@ $sudo npm install -g ionic
 ###Clone the Synesthesia repository 
 
 ```bash
-$git clone https://github.com/rberman/Synesthesia/tree/master/testAppPersonalTest synesthesia
+$git clone https://github.com/rberman/Synesthesia/tree/master/testAppPersonalTest 
 ```
 
 ###Configure platforms
