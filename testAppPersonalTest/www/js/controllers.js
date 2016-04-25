@@ -227,26 +227,32 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     };
 
     $scope.promptLoadWhichDrawing = function(){
-
       $scope.userInput = {};
-      $scope.loadPopup = $ionicPopup.show({
-        // template: '<input type="text" ng-model="userInput.creationName">',
-        template: '<ul>'+
-                      '<li ng-repeat="creation in getAllCreations()">'+
-                          '<button ng-click="loadCreation(creation.name); closePopup()" class="loadButton button button-calm">{{creation.name}}</button>'+
-                          '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
-                      '</li>'+
-                    '</ul>',
-        title: 'Which Creation Would You Like To Load?',
-        scope: $scope,
-        buttons: [
-          {
-            text: 'Cancel',
-            type: 'button-assertive'
-          }
-        ]
-      });
-
+      if ($scope.getAllCreations().length == 0) {
+        var alertPopup = $ionicPopup.alert({
+          title: "You don't have any saved drawings!",
+          template: 'If you make a drawing that you really like, be sure to save it after you play it, and you can load it here in the future!'
+        });
+      }
+      else {
+        $scope.loadPopup = $ionicPopup.show({
+          // template: '<input type="text" ng-model="userInput.creationName">',
+          template: '<ul>' +
+          '<li ng-repeat="creation in getAllCreations()">' +
+          '<button ng-click="loadCreation(creation.name); closePopup()" class="loadButton button button-calm">{{creation.name}}</button>' +
+          '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
+          '</li>' +
+          '</ul>',
+          title: 'Which Creation Would You Like To Load?',
+          scope: $scope,
+          buttons: [
+            {
+              text: 'Cancel',
+              type: 'button-assertive'
+            }
+          ]
+        });
+      }
     };
 
     $scope.closePopup = function(){
