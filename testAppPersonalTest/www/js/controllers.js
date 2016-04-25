@@ -27,7 +27,11 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     $scope.musicPlayingControl;
     $scope.canvasImgURL;
 
-    // Cite https://coderwall.com/p/ngisma/safe-apply-in-angular-js
+    /** 
+    * Cite https://coderwall.com/p/ngisma/safe-apply-in-angular-js
+    * This function triggers a digest only if a digest is not already in progress
+    * The purpose of this function is to help integrate angular and non-angular code
+    */
     $scope.safeApply = function(fn) {
       var phase = this.$root.$$phase;
       if(phase == '$apply' || phase == '$digest') {
@@ -39,6 +43,10 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       }
     };
 
+    /**
+    * Called when the replay button is clicked
+    * Stops music if music is playing, plays music if music is stopped
+    */
     $scope.handleReplayButton = function(){
       console.log($scope.musicPlayingControl);
       if($scope.musicPlayingControl){
@@ -49,7 +57,9 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       }
     };
 
-    //makes the back button stop all music
+    /**
+    * Adds functionality to the back button to stop any playing music
+    */
     $rootScope.$ionicGoBack = function() {
       if($scope.musicPlayingControl){
         $scope.stopMusic();
@@ -57,11 +67,16 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       $ionicHistory.goBack();
     };
 
+    /**
+    * Stops music
+    */
     $scope.stopMusic = function(){
       stopMusic();
     };
 
-    // Begins playing music based on the picutre
+    /**
+    * Begins the conversion of drawing to music
+    */
     $scope.convertToMusic = function(){
       $scope.musicPlayingControl = true;
       startSong(lines);
