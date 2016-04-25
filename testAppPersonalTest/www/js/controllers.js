@@ -295,7 +295,4 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       // alert(JSON.stringify($scope.loadedCreation));
     };
 
-    //  Code to hide the load button if there is nothing to load
-    $scope.hideLoad = (StorageService.getAll().length == 0);
-
   });
