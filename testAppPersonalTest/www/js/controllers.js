@@ -83,12 +83,16 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       console.log(lines);
     };
 
-    // Save current drawing so it can be returned to
+    /**
+    * Transfers user's drawing to result page
+    */
     $scope.transferDrawing = function() {
       $scope.canvasImgURL = drawingToResults();
     };
 
-    // Popup for saving a drawing: gets the name to save it under
+    /**
+    * Popup for saving a drawing: prompts user for name to save creation under
+    */
     $scope.promptNameForCreation = function(){
       //need to do this for ng-model to work in controller
       $scope.userInput = {};
@@ -102,12 +106,11 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
             text: '<b>Save</b>',
             type: 'button-positive',
             onTap: function(e) {
+              //don't allow the user to close unless they enter a name
               if (!$scope.userInput.creationName) {
-                //don't allow the user to close unless he enters wifi password
                 console.log($scope.userInput.creationName);
                 e.preventDefault();
               } else {
-                // return $scope.creationName;
                 $scope.saveCreationToLocalStorage($scope.userInput.creationName);
               }
             }
@@ -122,12 +125,12 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           drawingLines: lines,
           drawingSteps: prevDrawSteps,
           notesInLine: numNotesInLine
-          // drawingCtx : ctx
       };
-        console.log("Lines: " + $scope.creation.drawingLines);
-
-      if(StorageService.add($scope.creation) == -1){ //should save if the name doesn't already exist
-        var trashPopup = $ionicPopup.show({
+      console.log("Lines: " + $scope.creation.drawingLines);
+      //StorageService.add returns -1 when a drawing of the same name already exists
+      if(StorageService.add($scope.creation) == -1){ //saves if the name doesn't already exist
+        //Asks user if they want to overwrite previously saved creation
+        var overwritePopup = $ionicPopup.show({
           title: $scope.creation.name +' already exists. Do you want to overwrite it?',
           scope: $scope,
           buttons: [
@@ -141,6 +144,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
             }
           ]
         });
+
       }
 
     };
@@ -149,6 +153,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       $scope.musicPlayingControl = musicPlaying;
     };
 
+    
     $scope.getAll = function(){
       return StorageService.getAll();
     };
