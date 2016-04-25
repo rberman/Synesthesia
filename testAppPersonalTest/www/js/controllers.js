@@ -2,17 +2,20 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
   .controller('coverCtrl', function($scope) {
 
+    // Controller to create confetti
     $scope.createConfetti = function(){
       updateConfetti();
     };
-    //Need to fix this. Preliminary test that music can start and stop
+
+    // Play music on cover page
+    //TODO: fix this. Preliminary test that music can start and stop
     $scope.coverMusic = function(){
       ion.sound.play("testSound", {loop:true});
-    }
+    };
 
     $scope.stopCoverMusic = function(){
       ion.sound.stop("testSound");
-    }
+    };
 
     // Reset canvas
     $scope.resetCanvas = function() {
@@ -20,17 +23,15 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     }
   })
 
-  .controller('resultCtrl', function($scope, StorageService, $ionicPopup, $ionicHistory) {
+  .controller('resultCtrl', function($scope, StorageService, $ionicPopup, $ionicHistory, $rootScope) {
     $scope.musicPlayingControl;
     $scope.canvasImgURL;
 
-    //controls back-button. This hack is temporarily necessary to stop the music when we return from the result page
-    $scope.myGoBack = function(){
-      $scope.stopMusic();
-      $ionicHistory.goBack();
-    }
-
-    //function taken from 'https://coderwall.com/p/ngisma/safe-apply-in-angular-js'
+    /** 
+    * Cite https://coderwall.com/p/ngisma/safe-apply-in-angular-js
+    * This function triggers a digest only if a digest is not already in progress
+    * The purpose of this function is to help integrate angular and non-angular code
+    */
     $scope.safeApply = function(fn) {
       var phase = this.$root.$$phase;
       if(phase == '$apply' || phase == '$digest') {
@@ -42,7 +43,12 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       }
     };
 
+    /**
+    * Called when the replay button is clicked
+    * Stops music if music is playing, plays music if music is stopped
+    */
     $scope.handleReplayButton = function(){
+      console.log($scope.musicPlayingControl);
       if($scope.musicPlayingControl){
         $scope.stopMusic();
       }
@@ -51,20 +57,42 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       }
     };
 
+    /**
+    * Adds functionality to the back button to stop any playing music
+    */
+    $rootScope.$ionicGoBack = function() {
+      if($scope.musicPlayingControl){
+        $scope.stopMusic();
+      }
+      $ionicHistory.goBack();
+    };
+
+    /**
+    * Stops music
+    */
     $scope.stopMusic = function(){
       stopMusic();
-    }
+    };
 
+    /**
+    * Begins the conversion of drawing to music
+    */
     $scope.convertToMusic = function(){
       $scope.musicPlayingControl = true;
       startSong(lines);
       console.log(lines);
     };
 
-    $scope.saveDrawing = function() {
+    /**
+    * Transfers user's drawing to result page
+    */
+    $scope.transferDrawing = function() {
       $scope.canvasImgURL = drawingToResults();
     };
 
+    /**
+    * Popup for saving a drawing: prompts user for name to save creation under
+    */
     $scope.promptNameForCreation = function(){
       //need to do this for ng-model to work in controller
       $scope.userInput = {};
@@ -78,12 +106,11 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
             text: '<b>Save</b>',
             type: 'button-positive',
             onTap: function(e) {
+              //don't allow the user to close unless they enter a name
               if (!$scope.userInput.creationName) {
-                //don't allow the user to close unless he enters wifi password
                 console.log($scope.userInput.creationName);
                 e.preventDefault();
               } else {
-                // return $scope.creationName;
                 $scope.saveCreationToLocalStorage($scope.userInput.creationName);
               }
             }
@@ -98,12 +125,12 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           drawingLines: lines,
           drawingSteps: prevDrawSteps,
           notesInLine: numNotesInLine
-          // drawingCtx : ctx
       };
-        console.log("Lines: " + $scope.creation.drawingLines);
-
-      if(StorageService.add($scope.creation) == -1){ //should save if the name doesn't already exist
-        var trashPopup = $ionicPopup.show({
+      console.log("Lines: " + $scope.creation.drawingLines);
+      //StorageService.add returns -1 when a drawing of the same name already exists
+      if(StorageService.add($scope.creation) == -1){ //saves if the name doesn't already exist
+        //Asks user if they want to overwrite previously saved creation
+        var overwritePopup = $ionicPopup.show({
           title: $scope.creation.name +' already exists. Do you want to overwrite it?',
           scope: $scope,
           buttons: [
@@ -117,41 +144,33 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
             }
           ]
         });
+
       }
 
     };
 
+    /**
+    * Called to set the scope value of musicPlayingControl to that of the global, non-scope of musicPlaying
+    */
     $scope.setMusicPlayingControl = function(){
       $scope.musicPlayingControl = musicPlaying;
     };
 
-    $scope.getAll = function(){
-      return StorageService.getAll();
-    };
-
-    $scope.checkStorage = function(){
-      var creationList = $scope.getAll();
-      var lastIndex = creationList.length - 1;
-      console.log(creationList[lastIndex].name);
-
-      for(var i = 0; i < lastIndex; i++){
-        console.log(creationList[i].drawingURL);
-      }
-    }
-
   })
 
   .controller('canvasController', function($scope, StorageService, $ionicPopup) {
-
+    // Receives any mouse/touch interactions and passes them to the method that draws in drawing.js
     $scope.callCanvasForEvent = function(mouseAction, e){
       //transfers control over to drawing.js in hopes of fixing canvas problem.
       findxy(mouseAction, e);
     };
 
+    // Initiate canvas
     $scope.initCanvas = function(){
       canvasInit();
     };
 
+    // Start a song playing when the play button is clicked
     $scope.convertToMusic = function(){
       startSong(lines);
     };
@@ -194,7 +213,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       return $scope.colorToClass($scope.currentColor)
     };
 
-    // Clear canvas
+    // Clears canvas after checking with user
     $scope.trash = function() {
       var trashPopup = $ionicPopup.show({
         title: 'Are You Sure You Want to Delete This Drawing?',
@@ -223,37 +242,50 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       }
     };
 
+    // Opens the saved drawings of the user if they exist
     $scope.promptLoadWhichDrawing = function(){
-
       $scope.userInput = {};
-      $scope.loadPopup = $ionicPopup.show({
-        // template: '<input type="text" ng-model="userInput.creationName">',
-        template: '<ul>'+
-                      '<li ng-repeat="creation in getAllCreations()">'+
-                          '<button ng-click="loadCreation(creation.name); closePopup()" class="loadButton button button-calm">{{creation.name}}</button>'+
-                          '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
-                      '</li>'+
-                    '</ul>',
-        title: 'Which Creation Would You Like To Load?',
-        scope: $scope,
-        buttons: [
-          {
-            text: 'Cancel',
-            type: 'button-assertive'
-          }
-        ]
-      });
-
+      // If there are no saved drawings, an explanatory popup appears
+      if ($scope.getAllCreations().length == 0) {
+        var alertPopup = $ionicPopup.alert({
+          title: "You don't have any saved drawings!",
+          template: 'If you make a drawing that you really like, be sure to save it after you play it, and you can load it here in the future!'
+        });
+      }
+        // If there are loaded drawings, display the loaded drawings and allow people to delete them
+      else {
+        $scope.loadPopup = $ionicPopup.show({
+          // template: '<input type="text" ng-model="userInput.creationName">',
+          template: '<ul>' +
+          '<li ng-repeat="creation in getAllCreations()">' +
+          '<button ng-click="loadCreation(creation.name); closePopup(loadPopup)" class="loadButton button button-calm">{{creation.name}}</button>' +
+          '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
+          '</li>' +
+          '</ul>' +
+          '<p ng-if="getAllCreations().length == 0" style="text-align: center"> You have no saved Creations </p>',
+          title: 'Which Creation Would You Like To Load?',
+          scope: $scope,
+          buttons: [
+            {
+              text: 'Cancel',
+              type: 'button-assertive'
+            }
+          ]
+        });
+      }
     };
 
-    $scope.closePopup = function(){
-      $scope.loadPopup.close();
+    //can pass in any popup to close it in response to an event
+    $scope.closePopup = function(popup){
+      popup.close();
     };
 
+    // Returns all saved drawings
     $scope.getAllCreations = function(){
       return StorageService.getAll();
     };
 
+    // Removes a drawing from the saved drawings
     $scope.deleteCreation = function(creationName){
       var trashPopup = $ionicPopup.show({
         title: 'Are You Sure You Want to Permanently Delete This Drawing?',
@@ -271,6 +303,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       });
     };
 
+    // Loads the drawing a user selected onto the canvas
     $scope.loadCreation = function(creationName){
       $scope.loadedCreation = StorageService.get(creationName);
 
@@ -288,11 +321,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       console.log(lines);
       console.log(prevDrawSteps);
       console.log(numNotesInLine);
-      // console.log(ctx);
-      // alert(JSON.stringify($scope.loadedCreation));
-    };
 
-    //  Code to hide the load button if there is nothing to load
-    $scope.hideLoad = (StorageService.getAll().length == 0);
+    };
 
   });

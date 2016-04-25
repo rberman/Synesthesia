@@ -9,13 +9,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 .factory ('StorageService', function ($localStorage) {
 
+  //creations[] contains all saved creations
   $localStorage = $localStorage.$default({
     creations: []
   });
 
-  //TODO: change the parameter to the creation name
+  /**
+  * Searches for a creation based on its name and returns it if it exists, prints an error if it does not
+  */
   var _get = function (creationName) {
-    //TODO: Just for testing. Soon look for ID
     for(creationIndex in $localStorage.creations){
       //returns the creation whose name matches creationName
       if($localStorage.creations[creationIndex].name == creationName){
@@ -27,11 +29,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     console.log("Error! " + creationName + " is not a creation.");
   };
 
+  /**
+  * Returns all saved creations
+  */
   var _getAll = function () {
     console.log("Current Creations: " + $localStorage.creations);
     return $localStorage.creations;
   };
 
+  /**
+  * Adds a creation if one of the same name does not exist
+  * Returns -1 if one of the same name does exist
+  */
   var _add = function (creation) {
     if(_get(creation.name) != null){
       return -1;
@@ -41,11 +50,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     console.log("Creation Saved to Local Storage");
   }
 
+  /**
+  * Overwrites a creation by removing and then adding
+  */
   var _overwrite = function(creation){
     _remove(creation.name);
     _add(creation);
   }
 
+  /**
+  * Searches for a creation based on name and removes it
+  */
   var _remove = function (creationName) {
     for(creationIndex in $localStorage.creations){
       //returns the creation whose name matches creationName
@@ -55,10 +70,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   }
 
+  /**
+  * Deletes all saved creations
+  */
   var _removeAll = function () {
     $localStorage.creations = [];
   }
 
+  /**
+  * These are the function names that can be called by outside functions using StorageService.(function name)
+  */
   return {
     getAll: _getAll,
     get: _get,
