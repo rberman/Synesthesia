@@ -11,7 +11,7 @@ Synesthesia is created using the [Ionic framework.](http://ionicframework.com/) 
 
 ###Install Cordova
 
-First, install [Node.js](https://nodejs.org/en/), then open the termminal or command line and run:
+First, install [Node.js](https://nodejs.org/en/), then open the terminal or command line and run:
 
 ```bash
 $sudo npm install -g cordova
