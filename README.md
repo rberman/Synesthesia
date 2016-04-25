@@ -62,6 +62,8 @@ $ionic emulate ios
 
 ###Native app testing 
 
+This is only availiable in OS X operating system. 
+
 1. Open the existing project directory (Synesthesia/platforms/ios) in XCode. 
 2. Change the Bundle Identifier to com.ionicframework.testapp161830. 
 3. If you do not already have a team, link your team to your app. 
