@@ -149,24 +149,12 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
     };
 
+    /**
+    * Called to set the scope value of musicPlayingControl to that of the global, non-scope of musicPlaying
+    */
     $scope.setMusicPlayingControl = function(){
       $scope.musicPlayingControl = musicPlaying;
     };
-
-    
-    $scope.getAll = function(){
-      return StorageService.getAll();
-    };
-
-    $scope.checkStorage = function(){
-      var creationList = $scope.getAll();
-      var lastIndex = creationList.length - 1;
-      console.log(creationList[lastIndex].name);
-
-      for(var i = 0; i < lastIndex; i++){
-        console.log(creationList[i].drawingURL);
-      }
-    }
 
   })
 
