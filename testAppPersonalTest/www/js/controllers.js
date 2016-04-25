@@ -213,7 +213,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       return $scope.colorToClass($scope.currentColor)
     };
 
-    // Clear canvas
+    // Clears canvas after checking with user
     $scope.trash = function() {
       var trashPopup = $ionicPopup.show({
         title: 'Are You Sure You Want to Delete This Drawing?',
@@ -258,7 +258,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           // template: '<input type="text" ng-model="userInput.creationName">',
           template: '<ul>' +
           '<li ng-repeat="creation in getAllCreations()">' +
-          '<button ng-click="loadCreation(creation.name); closePopup()" class="loadButton button button-calm">{{creation.name}}</button>' +
+          '<button ng-click="loadCreation(creation.name); closePopup(loadPopup)" class="loadButton button button-calm">{{creation.name}}</button>' +
           '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
           '</li>' +
           '</ul>',
@@ -274,8 +274,9 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       }
     };
 
-    $scope.closePopup = function(){
-      $scope.loadPopup.close();
+    //can pass in any popup to close it in response to an event
+    $scope.closePopup = function(popup){
+      popup.close();
     };
 
     // Returns all saved drawings
@@ -319,8 +320,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       console.log(lines);
       console.log(prevDrawSteps);
       console.log(numNotesInLine);
-      // console.log(ctx);
-      // alert(JSON.stringify($scope.loadedCreation));
+
     };
 
   });
