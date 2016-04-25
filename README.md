@@ -62,3 +62,10 @@ $ionic emulate ios
 ```
 
 ###Native app testing 
+
+Open XCode
+Open existing project --> Synesthesia/www/platforms/ios
+Change the Bundle Identifier to com.ionicframework.testapp161830
+If you don't already have a Team, link your team to your app.
+Go to Product --> Destination --> and Select your Device
+Hit the Play Button to run your App on your Phone. NOTE: You will have to allow access to your phone and also if your phone is locked, you will have to unlock it to run. 
