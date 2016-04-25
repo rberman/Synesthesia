@@ -261,7 +261,8 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           '<button ng-click="loadCreation(creation.name); closePopup(loadPopup)" class="loadButton button button-calm">{{creation.name}}</button>' +
           '<button ng-click="deleteCreation(creation.name);" class="deleteDrawingButton button button-assertive icon ion-ios-trash"> </button>' +
           '</li>' +
-          '</ul>',
+          '</ul>' +
+          '<p ng-if="getAllCreations().length == 0" style="text-align: center"> You have no saved Creations </p>',
           title: 'Which Creation Would You Like To Load?',
           scope: $scope,
           buttons: [
