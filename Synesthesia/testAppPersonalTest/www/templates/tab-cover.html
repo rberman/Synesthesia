@@ -1,0 +1,14 @@
+<ion-view view-title = "">
+  <ion-content ng-app = "starter" class="padding setBlackBgd">
+    <!-- Confetti background -->
+    <div class = "logoImg">
+      <canvas id = "coverCanvas" ng-init="createConfetti()"></canvas>
+    </div>
+
+    <!-- Start and Info button -->
+    <a class="button button-block button-assertive" href="#/tab/drawing" ng-click="resetCanvas()">START</a>
+    <div class = "col-md 4 text-center"><a class="button positive-large button-positive ion-information-circled" href = "#/tab/info"> Info</a></div>
+  </ion-content>
+</ion-view>
+
+
