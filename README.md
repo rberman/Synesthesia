@@ -11,7 +11,7 @@ Synesthesia is created using the [Ionic framework.](http://ionicframework.com/) 
 
 ###Install Cordova
 
-First, install [Node.js](https://nodejs.org/en/), then open the termminal or command line and run:
+First, install [Node.js](https://nodejs.org/en/), then open the terminal or command line and run:
 
 ```bash
 $sudo npm install -g cordova
@@ -61,6 +61,8 @@ $ionic emulate ios
 ```
 
 ###Native app testing 
+
+This is only availiable in OS X operating system. 
 
 1. Open the existing project directory (Synesthesia/platforms/ios) in XCode. 
 2. Change the Bundle Identifier to com.ionicframework.testapp161830. 
