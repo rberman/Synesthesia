@@ -1,5 +1,5 @@
 notes = [];
-octaves = ['6', '5', '4'];
+octaves = ['6', '5', '4', '3', '2'];
 //C Blues scale
 key = ['C', 'Eb', 'F', 'Gb', 'G', 'Bb'];
 noteDivider = 100.0/key.length;
@@ -7,7 +7,9 @@ octaveDivider = 100.0/octaves.length;
 octaveVolumes = {
 	'6' : 0.2,
 	'5' : 0.8,
-	'4' : 1.0
+	'4' : 1.0,
+	'3' : 1.2,
+	'2' : 1.5
 }
 musicPlaying = false;
 
@@ -75,13 +77,6 @@ function compileNotes(lines){
 function startSong(lines){
 	if(!musicPlaying){
 		musicPlaying = true;
-		//TODO: This code is disgusting to me, but I can't find another solution right now
-		// var angularScope = angular.element(document.getElementById("replay-button")).scope();
-		// angularScope.$apply(function(){
-		// 	angularScope.$watch('musicPlaying', function(){
-		// 		angularScope.setMusicPlayingControl();
-		// 	});
-		// });
 
 		compileNotes(lines); //TODO: this line for beta only. Will recompile notes every time you start the song.
 	  	window.setTimeout(1000000); //TODO: fix this so page loads first then plays; quick fix is manual pause so page loads first
