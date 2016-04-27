@@ -14,6 +14,13 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   })
 
   .controller('resultCtrl', function($scope, StorageService, $ionicPopup, $ionicHistory, $rootScope) {
+
+    $scope.testHeadsetDetection = function() {
+      console.log("TEST");
+      alert("test"); 
+      plugins.headsetdetection.detect(function(detected) {alert(detected)});
+    };
+    
     $scope.musicPlayingControl;
     $scope.canvasImgURL;
 
