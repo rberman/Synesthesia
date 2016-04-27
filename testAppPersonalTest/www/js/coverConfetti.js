@@ -41,7 +41,7 @@ var coverCanvas, coverContext, W, H, generator1,
 function coverCanvasInit() {
   coverCanvas = document.getElementById("coverCanvas");
   W = coverCanvas.width = window.innerWidth * 0.8;
-  H = coverCanvas.height = window.innerHeight;
+  H = coverCanvas.height = window.innerHeight * 1.2;
   coverContext = coverCanvas.getContext("2d");
 }
 
@@ -71,8 +71,8 @@ function particle(x, y) {
   this.radius = randomInt(.1, 1);
   this.x = x;
   this.y = y;
-  this.vx = randomInt(-4, 4);
-  this.vy = randomInt(-10, -0);
+  this.vx = randomInt(-5, 5);
+  this.vy = randomInt(-10, 0);
   this.type = utils.randomInt(0, 1);
 
   this.w = utils.randomRange(5, 20);
