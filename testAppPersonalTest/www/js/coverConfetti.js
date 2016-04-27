@@ -40,7 +40,7 @@ var coverCanvas, coverContext, W, H, generator1,
 
 function coverCanvasInit() {
   coverCanvas = document.getElementById("coverCanvas");
-  W = coverCanvas.width = window.innerWidth * 0.8;
+  W = coverCanvas.width = window.innerWidth;
   H = coverCanvas.height = window.innerHeight;
   coverContext = coverCanvas.getContext("2d");
 }
@@ -69,10 +69,10 @@ function clamp(value, min, max) {
 
 function particle(x, y) {
   this.radius = randomInt(.1, 1);
-  this.x = x;
+  this.x = x - 50;
   this.y = y;
-  this.vx = randomInt(-4, 4);
-  this.vy = randomInt(-10, -0);
+  this.vx = randomInt(-5, 5);
+  this.vy = randomInt(-10, 0);
   this.type = utils.randomInt(0, 1);
 
   this.w = utils.randomRange(5, 20);
