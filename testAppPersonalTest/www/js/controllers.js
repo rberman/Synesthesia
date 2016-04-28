@@ -8,7 +8,6 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
         if (detected == null){
           $rootScope.headsetConnected = detected;
-          alert($rootScope.headsetConnected);
         }
         
         if (detected != $rootScope.headsetConnected){
@@ -18,9 +17,9 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           //TODO: find out what I need to do or refresh to get rid of the buzz
           //TODO: maybe this:
           // $window.location.reload();
+          alert("replaced js file");
           $rootScope.replacejscssfile("js/wad-master/build/wad.min.js", "js/wad-master/build/wad.min.js", "js");
           $window.location.reload();
-          alert("replaced js file");
         }
 
         // console.log($rootScope.headsetConnected);
@@ -37,6 +36,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
               allsuspects[i].parentNode.replaceChild(newelement, allsuspects[i]);
           }
       }
+      alert("replaced js");
     };
 
     $rootScope.createjscssfile = function(filename, filetype){
@@ -70,8 +70,8 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     //probably unnecessary at this point, but I am keeping this in here for ease of testing
     $scope.testHeadsetDetection = function() {
       alert("test"); 
-      plugins.headsetdetection.detect(function(detected) {alert(detected)});
-      alert($rootScope.headsetConnected);
+      // plugins.headsetdetection.detect(function(detected) {alert(detected)});
+      // alert($rootScope.headsetConnected);
     };
 
     $scope.musicPlayingControl;
