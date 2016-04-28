@@ -17,12 +17,42 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           alert($rootScope.headsetConnected);
           //TODO: find out what I need to do or refresh to get rid of the buzz
           //TODO: maybe this:
+          // $window.location.reload();
+          $rootScope.replacejscssfile("js/wad-master/build/wad.min.js"， "js/wad-master/build/wad.min.js"， "js");
           $window.location.reload();
+          alert("replaced js file");
         }
 
         // console.log($rootScope.headsetConnected);
       });
     });
+
+    $rootScope.replacejscssfile = function(oldfilename, newfilename, filetype){
+      var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none" //determine element type to create nodelist using
+      var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none" //determine corresponding attribute to test for
+      var allsuspects=document.getElementsByTagName(targetelement)
+      for (var i=allsuspects.length; i>=0; i--){ //search backwards within nodelist for matching elements to remove
+          if (allsuspects[i] && allsuspects[i].getAttribute(targetattr)!=null && allsuspects[i].getAttribute(targetattr).indexOf(oldfilename)!=-1){
+              var newelement= $rootScope.createjscssfile(newfilename, filetype)
+              allsuspects[i].parentNode.replaceChild(newelement, allsuspects[i])
+          }
+      }
+    }
+
+    $rootScope.createjscssfile = function(filename, filetype){
+    if (filetype=="js"){ //if filename is a external JavaScript file
+        var fileref=document.createElement('script')
+        fileref.setAttribute("type","text/javascript")
+        fileref.setAttribute("src", filename)
+    }
+    else if (filetype=="css"){ //if filename is an external CSS file
+        var fileref=document.createElement("link")
+        fileref.setAttribute("rel", "stylesheet")
+        fileref.setAttribute("type", "text/css")
+        fileref.setAttribute("href", filename)
+    }
+    return fileref
+  }
 
     // Controller to create confetti
     $scope.createConfetti = function(){
@@ -41,6 +71,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     $scope.testHeadsetDetection = function() {
       alert("test"); 
       plugins.headsetdetection.detect(function(detected) {alert(detected)});
+      alert($rootScope.headsetConnected);
     };
 
     $scope.musicPlayingControl;
