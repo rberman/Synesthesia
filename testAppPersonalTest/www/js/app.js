@@ -9,32 +9,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 .factory ('StorageService', function ($localStorage) {
 
-  //creations[] contains all saved creations
-  $localStorage = $localStorage.$default({
-    creations: []
+  /**Initiate database 'savedDrawings' with collection 'drawings' and a dynamic view of the names*/
+  var db = new loki('loki.json', {
+    autosave: true,
+    autosaveInterval: 5000,
+    autoload: true
+  });
+  var drawings = db.addCollection('drawings', {
+    unique: ['name']
+  });
+  var names = drawings.addDynamicView('names');
+  names.applyWhere(function getNames(obj){
+    return obj.name;
   });
 
   /**
   * Searches for a creation based on its name and returns it if it exists, prints an error if it does not
   */
   var _get = function (creationName) {
-    for(creationIndex in $localStorage.creations){
-      //returns the creation whose name matches creationName
-      if($localStorage.creations[creationIndex].name == creationName){
-        return $localStorage.creations[creationIndex];
-      }
-    }
-
-    //error
-    console.log("Error! " + creationName + " is not a creation.");
+    //return drawings.find({ 'name': creationName });
+    var foo =  drawings.by('name', creationName);
+    return foo;
   };
 
-  /**
+  /** TODO
   * Returns all saved creations
   */
   var _getAll = function () {
-    console.log("Current Creations: " + $localStorage.creations);
-    return $localStorage.creations;
+    return drawings.data;
   };
 
   /**
@@ -42,13 +44,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   * Returns -1 if one of the same name does exist
   */
   var _add = function (creation) {
-    if(_get(creation.name) != null){
-      return -1;
-    }
+    //if(_get(creation.name) != null){
+    //  return -1;
+    //}
 
-    $localStorage.creations.push(creation);
-    console.log("Creation Saved to Local Storage");
-  }
+    drawings.insert({
+      name: creation.name,
+      drawingLines: creation.drawingLines,
+      drawingSteps: creation.drawingSteps,
+      notesInLine: creation.notesInLine
+    });
+  };
 
   /**
   * Overwrites a creation by removing and then adding
@@ -56,26 +62,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   var _overwrite = function(creation){
     _remove(creation.name);
     _add(creation);
-  }
+  };
 
   /**
   * Searches for a creation based on name and removes it
   */
   var _remove = function (creationName) {
-    for(creationIndex in $localStorage.creations){
-      //returns the creation whose name matches creationName
-      if($localStorage.creations[creationIndex].name == creationName){
-        $localStorage.creations.splice(creationIndex, 1);
-      }
-    }
-  }
+    var drawingToRemove = _get(creationName);
+    drawings.remove( drawingToRemove );
+  };
 
   /**
   * Deletes all saved creations
   */
   var _removeAll = function () {
-    $localStorage.creations = [];
-  }
+    drawings.removeDataOnly();
+  };
 
   /**
   * These are the function names that can be called by outside functions using StorageService.(function name)
@@ -97,7 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   //eventually require input
   $scope.get = function(creationName){
     StorageService.get(creationName);
-  }
+  };
 
   $scope.remove = function (thing) {
     StorageService.remove(thing);
