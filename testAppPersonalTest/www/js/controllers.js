@@ -17,9 +17,10 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           //TODO: find out what I need to do or refresh to get rid of the buzz
           //TODO: maybe this:
           // $window.location.reload();
-          alert("replaced js file");
+          alert("replacing js file");
           $rootScope.replacejscssfile("js/wad-master/build/wad.min.js", "js/wad-master/build/wad.min.js", "js");
-          $window.location.reload();
+          alert("js file replaced");
+          // $window.location.reload();
         }
 
         // console.log($rootScope.headsetConnected);
