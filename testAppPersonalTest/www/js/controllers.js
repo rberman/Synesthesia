@@ -17,7 +17,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           alert($rootScope.headsetConnected);
           //TODO: find out what I need to do or refresh to get rid of the buzz
           //TODO: maybe this:
-          // $window.location.reload();
+          $window.location.reload();
         }
 
         // console.log($rootScope.headsetConnected);
