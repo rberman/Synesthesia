@@ -2289,8 +2289,8 @@
 ;
 
 /** Let's do the vendor-prefix dance. **/
-    var audioContext = window.AudioContext || window.webkitAudioContext;
-    var context      = new audioContext();
+    var WadLibAudioContext = window.AudioContext || window.webkitAudioContext;
+    var WadLibContext      = new WadLibAudioContext();
     var MediaStreamHelper = {
         /*
 	        The browser have to support Promises if the browser supports only the deprecated version of getUserMedia.
