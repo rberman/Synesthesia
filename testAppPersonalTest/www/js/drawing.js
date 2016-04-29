@@ -20,9 +20,7 @@ var canvas, ctx, flag = false,
   lineSize = 2,
   startX = 0,
   startY = 0,
-  distance = 0,
-  width = 0,
-  height = 0;
+  distance = 0;
 
 // Method to set up canvas size and add event listeners for drawing
 function canvasInit() {
@@ -30,8 +28,8 @@ function canvasInit() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   ctx = canvas.getContext("2d");
-  width = canvas.width;
-  height = canvas.height;
+  w = canvas.width;
+  h = canvas.height;
 }
 
 
@@ -118,7 +116,7 @@ function clearHistory() {
   prevDrawSteps = [];
   numNotesInLine = [];
   linesInLastStroke = 1;
-  ctx.clearRect(0, 0, width, height);
+  ctx.clearRect(0, 0, w, h);
   currentColor = "black";
 }
 
@@ -135,7 +133,7 @@ function undo() {
   prevDrawSteps.pop();  // Most recent element is what is currently shown so get rid of it
   var canvasPic = new Image();
   canvasPic.src = prevDrawSteps[prevDrawSteps.length - 1];  // Get last line version of the canvas in the array
-  ctx.clearRect(0, 0, width, height);  // Reset the canvas, then add the last version
+  ctx.clearRect(0, 0, w, h);  // Reset the canvas, then add the last version
   canvasPic.onload = function () {
     ctx.drawImage(canvasPic, 0, 0);
   };
@@ -148,7 +146,7 @@ function undo() {
 function loadImage(){
   var canvasPic = new Image();
   canvasPic.src = prevDrawSteps[prevDrawSteps.length - 1];  // Get last line version of the canvas in the array
-  ctx.clearRect(0, 0, width, height);  // Reset the canvas, then add the last version
+  ctx.clearRect(0, 0, w, h);  // Reset the canvas, then add the last version
   canvasPic.onload = function () {
     ctx.drawImage(canvasPic, 0, 0);
   };

@@ -4,6 +4,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     //idk if this is the right place for this. But I need to put it somewhere to apply it to the rootScope
     // $rootScope.headsetConnected;
     // $rootScope.$watch(function(){
+    //   WadLibContext = new WadLibAudioContext();
     //   plugins.headsetdetection.detect(function(detected) {
 
     //     if (detected == null){
@@ -19,7 +20,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     //       // $window.location.reload();
     //       alert("replacing js file");
     //       // $rootScope.replacejscssfile("js/wad-master/build/wad.min.js", "js/wad-master/build/wad.min.js", "js");
-    //       // refreshAudioContext();
+    //       WadLibContext = new WadLibAudioContext();
     //       alert("js file replaced");
     //       // $window.location.reload();
     //     }
