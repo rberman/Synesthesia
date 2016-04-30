@@ -79,7 +79,8 @@
 }
 
 p.header{
-  color:  #3385ff;
+  color: white;
+  /*color:  #3385ff;*/
   font-weight: bold;
   font-size: 25px;
   font-family: Georgia, serif;

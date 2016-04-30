@@ -4,8 +4,11 @@
 
     <ion-list>
       <ion-item class="infoBox" href="#"style="text-align: center">
-        <p class="header">Draw a Picture</p>
-        <ul>
+        <p class="header" ng-click="toggleDraw()">
+          <i class="icon {{ drawingArrowIcon }}"></i>
+          Draw a Picture
+        </p>
+        <ul class="ng-hide" ng-hide="hideDraw">
           <li class="infoText"><i class="icon icon ion-pound">Use your finger to draw on the canvas</i></li>
           <li class="infoText"><i class="icon icon ion-pound">You can change the color of your drawing</i></li>
           <li class="infoText"><i class="icon icon ion-pound">Press the Undo button to undo the last drawing</i></li>
@@ -13,8 +16,11 @@
         </ul>
       </ion-item>
       <ion-item class="infoBox" href="#" style="text-align: center;">
-        <p class="header">Listen to the Picture</p>
-        <ul>
+        <p class="header" ng-click="toggleListen()">
+          <i class="icon {{ listenArrowIcon }}"></i>
+          Listen to the Picture
+        </p>
+        <ul class="ng-hide" ng-hide="hideListen">
           <li class="infoText"><i class="icon icon ion-pound">Once you're done drawing, <br>hit the Play Button on the page</i></li>
           <li class="infoText"><i class="icon icon ion-pound">The results page will show you your drawing <br>and allow you to save your drawing</i></li>
         </ul>

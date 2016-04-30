@@ -13,11 +13,40 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     }
   })
 
+  .controller('infoCtrl', function($scope) {
+
+    /**
+     * Controllers for opening/closing info tabs
+     * @type {boolean}
+     */
+    $scope.drawingArrowIcon = "ion-chevron-right";
+    $scope.hideDraw = true;
+    $scope.toggleDraw = function() {
+      $scope.hideDraw = !$scope.hideDraw;
+      if ($scope.drawingArrowIcon == "ion-chevron-right") {
+        $scope.drawingArrowIcon = "ion-chevron-down";
+      } else {
+        $scope.drawingArrowIcon = "ion-chevron-right";
+      }
+    };
+
+    $scope.listenArrowIcon = "ion-chevron-right";
+    $scope.hideListen = true;
+    $scope.toggleListen = function() {
+      $scope.hideListen = !$scope.hideListen;
+      if ($scope.listenArrowIcon == "ion-chevron-right") {
+        $scope.listenArrowIcon = "ion-chevron-down";
+      } else {
+        $scope.listenArrowIcon = "ion-chevron-right";
+      }
+    }
+  })
+
   .controller('resultCtrl', function($scope, StorageService, $ionicPopup, $ionicHistory, $rootScope) {
     $scope.musicPlayingControl;
     $scope.canvasImgURL;
 
-    /** 
+    /**
     * Cite https://coderwall.com/p/ngisma/safe-apply-in-angular-js
     * This function triggers a digest only if a digest is not already in progress
     * The purpose of this function is to help integrate angular and non-angular code
@@ -246,7 +275,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       else {
         $scope.loadPopup = $ionicPopup.show({
           // template: '<input type="text" ng-model="userInput.creationName">',
-          template: 
+          template:
           '<ul>' +
             '<li ng-repeat="creation in getAllCreations()">' +
               '<div>'+
@@ -316,5 +345,4 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       console.log(numNotesInLine);
 
     };
-
   });
