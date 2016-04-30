@@ -10,10 +10,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 .factory ('StorageService', function ($localStorage) {
 
   /**Initiate database 'savedDrawings' with collection 'drawings' and a dynamic view of the names*/
+  var adapter = new LokiCordovaFSAdapter({"prefix": "loki"});
   var db = new loki('loki.json', {
     autosave: true,
     autosaveInterval: 5000,
-    autoload: true
+    autoload: true,
+    adapter: adapter
   });
   var drawings = db.addCollection('drawings', {
     unique: ['name']
@@ -32,7 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     return foo;
   };
 
-  /** TODO
+  /**
   * Returns all saved creations
   */
   var _getAll = function () {
@@ -54,6 +56,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       drawingSteps: creation.drawingSteps,
       notesInLine: creation.notesInLine
     });
+
+    db.saveDatabase();
   };
 
   /**
@@ -187,4 +191,4 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/cover');
 
-});
+});;
