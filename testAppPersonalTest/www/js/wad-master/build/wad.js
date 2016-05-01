@@ -2291,6 +2291,12 @@
 /** Let's do the vendor-prefix dance. **/
     var audioContext = window.AudioContext || window.webkitAudioContext;
     var context      = new audioContext();
+
+    function refreshAudioContext (){
+        console.log("refreshing audio Context");
+        context = new audioContext();
+    }
+
     var MediaStreamHelper = {
         /*
 	        The browser have to support Promises if the browser supports only the deprecated version of getUserMedia.

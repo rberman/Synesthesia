@@ -27,9 +27,6 @@
   position: relative;
 }
 
-.aboutUs{
-  padding-top: 100px;
-}
 
 .infoBackground{
   background:url("../img/background.png") no-repeat;
@@ -37,6 +34,7 @@
   background-color: black;
   background-size: 220%;
   z-index: 0;
+  max-width: 100%
 }
 
 .item .item-content{
@@ -46,20 +44,24 @@
   text-align-all: center;
 }
 
+.infoBackground .row{
+  max-width: 100%
+}
 
 .infoBackground .row .col{
-  color: white;
+  color: #3385ff;
   font-family: Lucida Sans Unicode;
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: 18px;
+  max-width: 100%
 }
 
 .infoBackground .information{
   color: white;
   font-family: Pacifico;
   font-style: normal;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 50px;
 }
 
@@ -77,13 +79,19 @@
   font-style: normal;
   font-size: 16px;
   margin-top: 5%;
+li.infoText{
+  color: grey;
+  font-family: Georgia, serif;
+  font-style: normal;
+  font-size: 16px;
+  margin-top: 5%;
 }
 
 p.header{
   color: white;
   /*color:  #3385ff;*/
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
   font-family: Georgia, serif;
 }
 
@@ -118,4 +126,10 @@ p.header{
 
 .dropdown {
   margin-right: 5%;
+}
+
+
+img.images{
+  height: 150px;
+  width: 90px;
 }
