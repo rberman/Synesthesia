@@ -40,9 +40,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
      * Returns -1 if one of the same name does exist
      */
     var _add = function (creation) {
-      //if(_get(creation.name) != null){
-      //  return -1;
-      //}
+      if(_get(creation.name) != null){
+        return -1;
+      }
 
       drawings.insert({
         name: creation.name,
