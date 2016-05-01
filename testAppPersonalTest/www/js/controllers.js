@@ -39,6 +39,17 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       } else {
         $scope.listenArrowIcon = "ion-chevron-right";
       }
+    };
+
+    $scope.saveArrowIcon = "ion-chevron-right";
+    $scope.hideSave = true;
+    $scope.toggleSave = function() {
+      $scope.hideSave = !$scope.hideSave;
+      if ($scope.saveArrowIcon == "ion-chevron-right") {
+        $scope.saveArrowIcon = "ion-chevron-down";
+      } else {
+        $scope.saveArrowIcon = "ion-chevron-right";
+      }
     }
   })
 
