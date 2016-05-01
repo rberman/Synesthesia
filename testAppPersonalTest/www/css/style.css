@@ -65,19 +65,73 @@
   font-size: 50px;
 }
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.item .item-content .infoText {
+  color: white;
+  font-family: Georgia, serif;
+  font-style: normal;
+  font-size: 16px;
+  margin-top: 5%;
+}
+
 li.infoText{
   color: grey;
   font-family: Georgia, serif;
   font-style: normal;
-  font-size: 14px;
+  font-size: 16px;
+  margin-top: 5%;
+  margin-bottom: 15%;
 }
 
 p.header{
-  color:  #3385ff;
+  color: white;
+  /*color:  #3385ff;*/
   font-weight: bold;
   font-size: 20px;
   font-family: Georgia, serif;
 }
+
+.infoBox {
+  margin-bottom: 10%;
+  text-align: left;
+}
+
+
+.wrapping-list .item-content, .wrapping-list .item {
+  overflow: initial;
+  white-space: initial;
+}
+
+.info-button-ex {
+  float: left;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-top: 2%;
+  right: 0 !important;
+}
+
+.info-long-text {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.info-extra-long-text {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.dropdown {
+  margin-right: 5%;
+  margin-bottom: 10%;
+}
+
 
 img.images{
   height: 150px;
