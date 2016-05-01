@@ -73,18 +73,21 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.item .item-content .infoText{
+.item .item-content .infoText {
   color: white;
   font-family: Georgia, serif;
   font-style: normal;
   font-size: 16px;
   margin-top: 5%;
+}
+
 li.infoText{
   color: grey;
   font-family: Georgia, serif;
   font-style: normal;
   font-size: 16px;
   margin-top: 5%;
+  margin-bottom: 15%;
 }
 
 p.header{
@@ -126,6 +129,7 @@ p.header{
 
 .dropdown {
   margin-right: 5%;
+  margin-bottom: 10%;
 }
 
 
