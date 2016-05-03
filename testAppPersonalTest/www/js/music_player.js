@@ -7,7 +7,7 @@ keys = {"black":['C', 'Eb', 'F', 'Gb', 'G', 'Bb'], //C Blues scale
 		"yellow": ['C', 'D', 'E', 'F', 'G', 'A', 'B'], //C Major scale
 		"red": ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'Gb']}; //A Flat Major scale
 currentKey = [];
-noteDivider = 100.0/currentKey.length;
+noteDivider = 0;
 octaveDivider = 100.0/octaves.length;
 octaveVolumes = {
 	'6' : 0.2,
@@ -24,7 +24,6 @@ musicPlaying = false;
 function getNotePitch(line){
 	var startX = line.start[0];
 	var startY = line.start[1];
-
 	//find the note
 	var noteIndex = Math.floor(startX/noteDivider);
 	var pitch = currentKey[noteIndex];
@@ -84,6 +83,7 @@ function compileNotes(lines){
 		}
 	}
 	currentKey = keys[color];
+	noteDivider = 100.0/currentKey.length;
 	console.log("Dominant Color is " + color + " and Current Scale is " + currentKey);
 	for(line in lines){
 		var note = lineToNote(lines[line]);
