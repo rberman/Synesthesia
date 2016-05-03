@@ -26,6 +26,7 @@
 .canvas-right-icon {
   float: right;
   top: 60px;
+  margin-right: 15px
 }
 
 .canvas-left-icon {
@@ -33,17 +34,10 @@
   top: 60px;
 }
 
-.ion-paintbrush{
-  right: 25px;
+.new-drawing{
+  margin-left: 15px;
 }
 
-#new-drawing{
-  left: 15px;
-}
-
-.ion-ios-undo {
-  right: 50px;
-}
 
 .loadButton {
   height: 40px;

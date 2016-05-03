@@ -7,11 +7,6 @@
     </a>
   </ion-nav-buttons>
 
-  <!-- Load Button -->
-  <ion-nav-buttons side="center">
-    <a class="button button-positive" ng-click="promptLoadWhichDrawing()">Load</a>
-  </ion-nav-buttons>
-
   <body>
   <div ng-app="starter" ng-init="initCanvas()">
     <!-- Paintbrush for color buttons -->
@@ -27,7 +22,8 @@
 
     <!-- Trash and undo buttons -->
     <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-undo canvas-right-icon ng-hide"></button>
-    <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-ios-compose-outline canvas-left-icon ng-hide" id="new-drawing"></button>
+    <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-ios-compose-outline canvas-left-icon ng-hide new-drawing"></button>
+    <button ng-click="promptLoadWhichDrawing()" ng-hide="!hideColors" class="button button-icon icon ion-folder canvas-left-icon ng-hide new-drawing"></button>
 
     <!-- Drawing Canvas -->
     <canvas id="canvas"
