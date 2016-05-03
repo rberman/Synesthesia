@@ -5,7 +5,7 @@ keys = {"black":['C', 'Eb', 'F', 'Gb', 'G', 'Bb'], //C Blues scale
 		"blue": ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'], //F Major scale
 		"green": ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'], //E Major scale
 		"yellow": ['C', 'D', 'E', 'F', 'G', 'A', 'B'], //C Major scale
-		"red": ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']}; //A Flat Major scale
+		"red": ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'Gb']}; //A Flat Major scale
 currentKey = [];
 noteDivider = 100.0/currentKey.length;
 octaveDivider = 100.0/octaves.length;
