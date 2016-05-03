@@ -23,8 +23,13 @@
   right: 30px;
 }
 
-.canvas-icon {
+.canvas-right-icon {
   float: right;
+  top: 60px;
+}
+
+.canvas-left-icon {
+  float: left;
   top: 60px;
 }
 
@@ -32,12 +37,12 @@
   right: 25px;
 }
 
-.ion-ios-trash{
-  right: 50px;
+.ion-ios-compose-outline{
+  left: 15px;
 }
 
 .ion-ios-undo {
-  right: 75px;
+  right: 50px;
 }
 
 .loadButton {

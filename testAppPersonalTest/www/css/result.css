@@ -7,7 +7,7 @@
 #drawing-pic{
   margin: auto;
   height: 140%;
-  width: 55%;
+  width: 60%;
   padding-bottom: 15%;
   padding-top:20%;
   display: block;
@@ -16,9 +16,9 @@
 
 .frameImg{
   background:url("../img/goldFrame.png");
-  background-repeat:no-repeat;
-  background-size:85% 100%;
+  background-size:106% 110%;
   background-position:center;
+  background-color: white;
   margin: auto;
   z-index: -1;
 }
@@ -29,6 +29,7 @@
   background-repeat: no-repeat, no-repeat;
   background-size: 100% 100%,  85% 100%;
   background-position: center, center;
+
   margin: auto;
   z-index: -1;
 }

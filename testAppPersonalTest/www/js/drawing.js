@@ -163,7 +163,8 @@ function createLineObj(){
   // Create a line object and add it to the lines list
   var line = {
     start: [(startX / canvas.width) * 100.0, (startY / canvas.height) * 100.0],
-    lineLength: distance
+    lineLength: distance,
+    color: currentColor
   };
   lines.push(line);
 }

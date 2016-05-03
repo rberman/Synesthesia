@@ -308,12 +308,13 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     // Clears canvas after checking with user
     $scope.trash = function() {
       var trashPopup = $ionicPopup.show({
-        title: 'Are You Sure You Want to Delete This Drawing?',
+        title: 'Are You Sure You Want to Create A New Drawing?',
+        template: '<p style="text-align: center">Any unsaved work will be lost</p>',
         scope: $scope,
         buttons: [
           { text: 'Cancel' },
           {
-            text: '<b>Delete</b>',
+            text: '<b>Yes</b>',
             type: 'button-assertive',
             onTap: function(e) {
               clearHistory();

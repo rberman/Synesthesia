@@ -15,7 +15,7 @@
   <body>
   <div ng-app="starter" ng-init="initCanvas()">
     <!-- Paintbrush for color buttons -->
-    <button ng-click="toggleColors()" class="button button-icon icon ion-paintbrush canvas-icon {{getCurrentColorClass()}}"></button>
+    <button ng-click="toggleColors()" class="button button-icon icon ion-paintbrush canvas-right-icon {{getCurrentColorClass()}}"></button>
 
     <!-- Color buttons - appear only when paintbrush is clicked -->
     <button ng-click="changeColors('red')" ng-hide="hideColors" class="ng-hide button color-button button-assertive"></button>
@@ -26,8 +26,8 @@
     <button ng-click="changeColors('black')" ng-hide="hideColors" class="ng-hide button color-button button-dark"></button>
 
     <!-- Trash and undo buttons -->
-    <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-ios-trash canvas-icon ng-hide"></button>
-    <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-undo canvas-icon ng-hide"></button>
+    <button ng-click="undoLast()" ng-hide="!hideColors" class="button button-icon icon ion-ios-undo canvas-right-icon ng-hide"></button>
+    <button ng-click="trash()" ng-hide="!hideColors" class="button button-icon icon ion-ios-compose-outline canvas-left-icon ng-hide"></button>
 
     <!-- Drawing Canvas -->
     <canvas id="canvas"
