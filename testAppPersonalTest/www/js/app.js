@@ -8,7 +8,7 @@
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-  console.log(cordova.file);
+  console.log("-------> it is ready", cordova.file);
 }
 
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngStorage', 'lokijs'])
