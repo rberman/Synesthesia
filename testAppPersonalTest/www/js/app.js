@@ -5,19 +5,36 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngStorage'])
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+  console.log(cordova.file);
+}
+
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngStorage', 'lokijs'])
 
   .factory ('StorageService', function ($localStorage) {
 
     /**Initiate database 'savedDrawings' with collection 'drawings' and a dynamic view of the names*/
-    var db = new loki('loki.json', {
-      autosave: true,
-      autosaveInterval: 5000,
-      autoload: true
+    var db, drawings;
+    ionic.Platform.ready(function(){
+      // will execute when device is ready, or immediately if the device is already ready.
+      var adapter = new LokiCordovaFSAdapter({"prefix": "loki"});
+      db = new loki('loki.json', {
+        autosave: true,
+        autosaveInterval: 5000,
+        autoload: true,
+        adapter: adapter
+      });
+      drawings = db.getCollection('drawings');
+      if (drawings === null) {
+        drawings = db.addCollection('drawings', {
+          unique: ['name']
+        });
+      }
     });
-    var drawings = db.addCollection('drawings', {
-      unique: ['name']
-    });
+
+
 
     /**
      * Searches for a creation based on its name and returns it if it exists, prints an error if it does not
@@ -40,9 +57,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
      * Returns -1 if one of the same name does exist
      */
     var _add = function (creation) {
-      if(_get(creation.name) != null){
-        return -1;
-      }
+      //if(_get(creation.name) != null){
+      //  return -1;
+      //}
 
       drawings.insert({
         name: creation.name,
