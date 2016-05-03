@@ -2620,6 +2620,13 @@ Check out http://www.voxengo.com/impulses/ for free impulse responses. **/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         else { arg.callback && arg.callback(this) }
     };
+
+    Wad.refreshAudioContext = function refreshAudioContext(){
+        context = new audioContext();
+        Wad.audioContext = context;
+        console.log("Audio Context Refreshed");
+    }
+
     Wad.micConsent = false
     Wad.audioContext = context
     if ( window.Tuna != undefined ) {

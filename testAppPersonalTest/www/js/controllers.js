@@ -2,32 +2,30 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
   .controller('coverCtrl', function($scope, $rootScope) {
     //idk if this is the right place for this. But I need to put it somewhere to apply it to the rootScope
-    // $rootScope.headsetConnected;
-    // $rootScope.$watch(function(){
-    //   WadLibContext = new WadLibAudioContext();
-    //   plugins.headsetdetection.detect(function(detected) {
+    $rootScope.headsetConnected;
+    $rootScope.$watch(function(){
+      plugins.headsetdetection.detect(function(detected) {
 
-    //     if (detected == null){
-    //       $rootScope.headsetConnected = detected;
-    //     }
+        if ($rootScope.headsetConnected == null){
+          $rootScope.headsetConnected = detected;
+        }
         
-    //     if (detected != $rootScope.headsetConnected){
-    //       //set headsetConnected state to current state
-    //       $rootScope.headsetConnected = detected;
-    //       alert($rootScope.headsetConnected);
-    //       //TODO: find out what I need to do or refresh to get rid of the buzz
-    //       //TODO: maybe this:
-    //       // $window.location.reload();
-    //       alert("replacing js file");
-    //       // $rootScope.replacejscssfile("js/wad-master/build/wad.min.js", "js/wad-master/build/wad.min.js", "js");
-    //       WadLibContext = new WadLibAudioContext();
-    //       alert("js file replaced");
-    //       // $window.location.reload();
-    //     }
+        if (detected != $rootScope.headsetConnected){
+          //set headsetConnected state to current state
+          $rootScope.headsetConnected = detected;
+          alert($rootScope.headsetConnected);
+          //TODO: find out what I need to do or refresh to get rid of the buzz
+          //TODO: maybe this:
+          // $window.location.reload();
+          console.log("refreshing audio context");
+          // $rootScope.replacejscssfile("js/wad-master/build/wad.min.js", "js/wad-master/build/wad.min.js", "js");
+          Wad.refreshAudioContext();
+          // $window.location.reload();
+        }
 
-    //     // console.log($rootScope.headsetConnected);
-    //   });
-    // });
+        // console.log($rootScope.headsetConnected);
+      });
+    });
 
   //   $rootScope.replacejscssfile = function(oldfilename, newfilename, filetype){
   //     var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none"; //determine element type to create nodelist using
