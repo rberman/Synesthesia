@@ -1,8 +1,9 @@
 <ion-view>
-  <ion-content class="infoBackground" align = "center">
+  <ion-content class="infoBackground" align="center">
     <h1 class="information"> How it Works? </h1>
-
     <ion-list class="wrapping-list">
+
+      <!-- "Draw a Picture" dropdown info section -->
       <ion-item class="infoBox" href="#">
         <p class="header" ng-click="toggleDraw()">
           <i class="icon {{ drawingArrowIcon }} dropdown"></i>
@@ -31,6 +32,8 @@
           </li>
         </ul>
       </ion-item>
+
+      <!-- "Listen to a Drawing" dropdown info section -->
       <ion-item class="infoBox" href="#">
         <p class="header" ng-click="toggleListen()">
           <i class="icon {{ listenArrowIcon }} dropdown"></i>
@@ -49,6 +52,7 @@
         </ul>
       </ion-item>
 
+      <!-- "Save your Creation" dropdown info section -->
       <ion-item class="infoBox" href="#">
         <p class="header" ng-click="toggleSave()">
           <i class="icon {{ saveArrowIcon }} dropdown"></i>
@@ -80,6 +84,7 @@
       </ion-item>
     </ion-list>
 
+    <!-- About Us section - pictures of us -->
     <h1 class="information"> About Us </h1>
     <div class="row">
       <div class="col">
@@ -98,6 +103,13 @@
         <img src="./img/Kevin.JPG" class="images"><br>
         Kevin Tang
       </div>
+    </div>
+
+    <!-- About product description -->
+    <div>
+      <h4 id="about-text">
+          We built Synesthesia to encourage you to take a few seconds every now and then to play. Be inspired. Be creative. Have fun.
+      </h4>
     </div>
   </ion-content>
 </ion-view>

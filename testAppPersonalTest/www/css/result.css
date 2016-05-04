@@ -1,8 +1,6 @@
-#replay-button{
-  width: 50px !important;
-  margin: 5px auto !important;
-  display: block;
-}
+/*****************/
+/* Image Display */
+/*****************/
 
 #drawing-pic{
   margin: auto;
@@ -23,17 +21,16 @@
   z-index: -1;
 }
 
-
-.frameImg2{
-  background:url("../img/curtainTest.png"), url("../img/goldFrame.png");
-  background-repeat: no-repeat, no-repeat;
-  background-size: 100% 100%,  85% 100%;
-  background-position: center, center;
-
-  margin: auto;
-  z-index: -1;
-}
-
 .bgd{
   background-color: #cfcfcf; /* #dcdcdc #b6b6b6;*/
+}
+
+/***********/
+/* Buttons */
+/***********/
+
+#replay-button{
+  width: 50px !important;
+  margin: 5px auto !important;
+  display: block;
 }

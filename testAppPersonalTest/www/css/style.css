@@ -1,15 +1,6 @@
-/* Empty. Add your own CSS if you like */
-
-.paddingStartButton {
-  padding-bottom: 30px;
-  padding-top: 50px;
-}
-
-.information{
-  padding-bottom: 50px;
-  padding-top: 100px;
-}
-
+/**********************/
+/* CSS for Cover Page */
+/**********************/
 .setBlackBgd{
   background-color: black;
 }
@@ -27,6 +18,16 @@
   position: relative;
 }
 
+/*********************/
+/* CSS for Info Page */
+/*********************/
+
+/* General page formatting */
+
+.information{
+  padding-bottom: 50px;
+  padding-top: 100px;
+}
 
 .infoBackground{
   background:url("../img/background.png") no-repeat;
@@ -35,13 +36,6 @@
   background-size: 220%;
   z-index: 0;
   max-width: 100%
-}
-
-.item .item-content{
-  width: 100%;
-  background-color: black;
-  color: white;
-  text-align-all: center;
 }
 
 .infoBackground .row{
@@ -65,34 +59,15 @@
   font-size: 50px;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.item .item-content .infoText {
+.item .item-content{
+  width: 100%;
+  background-color: black;
   color: white;
-  font-family: Georgia, serif;
-  font-style: normal;
-  font-size: 16px;
-  margin-top: 5%;
-}
-
-li.infoText{
-  color: grey;
-  font-family: Georgia, serif;
-  font-style: normal;
-  font-size: 16px;
-  margin-top: 5%;
-  margin-bottom: 15%;
+  text-align-all: center;
 }
 
 p.header{
   color: white;
-  /*color:  #3385ff;*/
   font-weight: bold;
   font-size: 20px;
   font-family: Georgia, serif;
@@ -103,6 +78,7 @@ p.header{
   text-align: left;
 }
 
+/* For text display in info sections */
 
 .wrapping-list .item-content, .wrapping-list .item {
   overflow: initial;
@@ -132,8 +108,15 @@ p.header{
   margin-bottom: 10%;
 }
 
+/*****************/
+/* About Section */
+/*****************/
 
 img.images{
   height: 150px;
   width: 90px;
+}
+
+#about-text {
+  color: white;
 }

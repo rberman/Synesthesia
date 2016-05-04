@@ -2,7 +2,7 @@
  * Created by rberman on 2/28/16.
  * CITATIONS:
  * A large part of this code is from http://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse
- * Undo functionality is from http://www.codicode.com/art/undo_and_redo_to_the_html5_canvas.aspx
+ * Undo functionality is inspired by http://www.codicode.com/art/undo_and_redo_to_the_html5_canvas.aspx
  */
 
 var canvas, ctx, flag = false,
@@ -22,7 +22,7 @@ var canvas, ctx, flag = false,
   startY = 0,
   distance = 0;
 
-// Method to set up canvas size and add event listeners for drawing
+/** Method to set up canvas size and add event listeners for drawing */
 function canvasInit() {
   canvas = document.getElementById('canvas');
   canvas.width = window.innerWidth;
@@ -34,13 +34,13 @@ function canvasInit() {
 
 
 
-// Set the color of the pen
+/** Set the color of the pen */
 function changeColor(newColor) {
   currentColor = newColor;
 }
 
 
-// Draw function creates lines on canvas based on drawing
+/** Creates lines on canvas based on drawing */
 function draw() {
   ctx.beginPath();
   ctx.moveTo(prevX, prevY);
@@ -53,64 +53,95 @@ function draw() {
 }
 
 
+/**
+ * Given a mouse or touch event on the canvas,
+ * this function calls the appropriate function to handle the action
+ * @param mouseAction
+ * @param e
+ */
 function findxy(mouseAction, e) {
   // When the mouse is pushed
   if (mouseAction == 'down') {
-    prevX = currX;
-    prevY = currY;
-    currX = e.gesture.center.pageX - canvas.offsetLeft;
-    currY = e.gesture.center.pageY - canvas.offsetTop;
-    linesInLastStroke = 1;
-
-    flag = true;
-    dot_flag = true;
-    if (dot_flag) {
-      ctx.beginPath();
-      ctx.fillStyle = currentColor;
-      ctx.fillRect(currX, currY, 2, 2);
-      ctx.closePath();
-      dot_flag = false;
-    }
-
-    // Remember where the line starts
-    startX = currX;
-    startY = currY;
-    distance = 0;
+    mousedown(e);
   }
 
   // When mouse is lifted
   if (mouseAction == 'up' || mouseAction == "out") {
-    if(flag == true){
-      flag = false;
-      createLineObj();
-      pushDrawStep();
-      numNotesInLine.push(linesInLastStroke);
-    }
+    mouseup();
   }
 
   // When mouse is moving
   if (mouseAction == 'move') {
-    if (flag) {
-      prevX = currX;
-      prevY = currY;
-      currX = e.gesture.center.pageX - canvas.offsetLeft;
-      currY = e.gesture.center.pageY - canvas.offsetTop;
-      draw();
-      distance ++;
-    }
-
-    //starts a new note when the user draws too long of a line
-    if(distance >= maxLineDistance){
-      createLineObj();
-      startX = currX;
-      startY = currY;
-      distance = 0;
-      linesInLastStroke++;
-    }
+    mousemove(e);
   }
 }
 
-// Clears the canvas, and all history associated with the canvas (lines, notes, etc.)
+/**
+ * This function sets the start point of a line,
+ * resets line tracking variables, and begins drawing
+ * @param e
+ */
+function mousedown(e) {
+  prevX = currX;
+  prevY = currY;
+  currX = e.gesture.center.pageX - canvas.offsetLeft;
+  currY = e.gesture.center.pageY - canvas.offsetTop;
+  linesInLastStroke = 1;
+
+  flag = true;
+  dot_flag = true;
+  if (dot_flag) {
+    ctx.beginPath();
+    ctx.fillStyle = currentColor;
+    ctx.fillRect(currX, currY, 2, 2);
+    ctx.closePath();
+    dot_flag = false;
+  }
+
+  // Remember where the line starts
+  startX = currX;
+  startY = currY;
+  distance = 0;
+}
+
+
+/**
+ * When user stops drawing, saves all information regarding the line
+ */
+function mouseup() {
+  if(flag == true){
+    flag = false;
+    createLineObj();
+    pushDrawStep();
+    numNotesInLine.push(linesInLastStroke);
+  }
+}
+
+/**
+ * Draws while user is dragging across the screen
+ * @param e
+ */
+function mousemove(e) {
+  if (flag) {
+    prevX = currX;
+    prevY = currY;
+    currX = e.gesture.center.pageX - canvas.offsetLeft;
+    currY = e.gesture.center.pageY - canvas.offsetTop;
+    draw();
+    distance ++;
+  }
+
+  // Starts a new note when the user draws too long of a line
+  if(distance >= maxLineDistance){
+    createLineObj();
+    startX = currX;
+    startY = currY;
+    distance = 0;
+    linesInLastStroke++;
+  }
+}
+
+/** Clears the canvas, and all history associated with the canvas (lines, notes, etc.) */
 function clearHistory() {
   lines = [];
   prevDrawSteps = [];
@@ -120,7 +151,7 @@ function clearHistory() {
   currentColor = "black";
 }
 
-// Undo the most recent line drawn
+/** Undo the most recent line drawn */
 function undo() {
   // Don't undo if canvas is already empty
   if (canvasIsEmpty()) return;
@@ -143,6 +174,9 @@ function undo() {
   }
 }
 
+/**
+ * Load a previously drawn image
+ */
 function loadImage(){
   var canvasPic = new Image();
   canvasPic.src = prevDrawSteps[prevDrawSteps.length - 1];  // Get last line version of the canvas in the array
@@ -152,13 +186,13 @@ function loadImage(){
   };
 }
 
-// Pushes current canvas to the prevDrawSteps (so we can later undo lines)
+/** Pushes current canvas to the prevDrawSteps (so we can later undo lines) */
 function pushDrawStep() {
   prevDrawSteps.push(document.getElementById('canvas').toDataURL());
 }
 
 
-// Creates a line object for each line and adds it to the list of lines
+/** Creates a line object for each line and adds it to the list of lines */
 function createLineObj(){
   // Create a line object and add it to the lines list
   var line = {
@@ -169,7 +203,7 @@ function createLineObj(){
   lines.push(line);
 }
 
-// Saves the drawing so we can display it on the next page
+/** Saves the drawing so we can display it on the next page */
 // From: http://stackoverflow.com/questions/3318565/any-way-to-clone-html5-canvas-element-with-its-content
 function drawingToResults() {
   //create a new canvas

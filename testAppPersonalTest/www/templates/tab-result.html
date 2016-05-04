@@ -1,12 +1,14 @@
 <ion-view view-title="Listen to your masterpiece!">
   <ion-content class="bgd" padding="true">
     <body>
+
+    <!-- Framed Drawing -->
       <div  ng-app="starter" ng-init="transferDrawing()" class ="frameImg">
         <img id="drawing-pic" src="{{canvasImgURL}}"/>
       </div>
       <div class = "col-md 4 text-center" ng-app="starter" ng-init="convertToMusic()" >
 
-        <!-- Play button -->
+        <!-- Play button (sometimes pause button if music is playing) -->
         <button id="replay-button" class="button button-positive" ng-click="handleReplayButton()">
           <i ng-if="!musicPlayingControl" class="icon ion-play"></i>
           <i ng-if="musicPlayingControl" class="icon ion-pause"></i>
@@ -14,8 +16,6 @@
 
         <!-- Info button -->
         <button id="save-button" class="button button-positive" ng-click="promptNameForCreation();">Save</button>
-        <!-- <button class="button button-assertive" ng-click="testHeadsetDetection();">headphone detected?</button> -->
-        <!-- <button class="button button-royal" ng-click="checkStorage()">Check</button> -->
       </div>
     </body>
 

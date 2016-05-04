@@ -9,10 +9,10 @@
 
   <body>
   <div ng-app="starter" ng-init="initCanvas()">
-    <!-- Paintbrush for color buttons -->
+    <!-- Paintbrush to open color buttons -->
     <button ng-click="toggleColors()" class="button button-icon icon ion-paintbrush canvas-right-icon {{getCurrentColorClass()}}"></button>
 
-    <!-- Color buttons - appear only when paintbrush is clicked -->
+    <!-- Color changing buttons - appear only when paintbrush is clicked -->
     <button ng-click="changeColors('red')" ng-hide="hideColors" class="ng-hide button color-button button-assertive"></button>
     <button ng-click="changeColors('yellow')" ng-hide="hideColors" class="ng-hide button color-button button-energized"></button>
     <button ng-click="changeColors('green')" ng-hide="hideColors" class="ng-hide button color-button button-balanced"></button>
