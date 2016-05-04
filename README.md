@@ -70,3 +70,14 @@ This is only availiable in OS X operating system.
 4. Go to Product -> Destination. Select your Device. 
 5. Press play to build and run the app on your phone. 
     * NOTE: Make sure that the phone is unlocked. Also, the computer needs to have access to the phone, that is, the phone has to     trust the computer. 
+
+#Notes
+
+###Branches
+
+The master branch contains the final demo code. As software development never truly ends, there are a few bugs we would like to fix before releasing Synesthesia on the app store. Below are the names and descriptions of the additional branches. 
+
+   * headPhonesFix
+      * This branch is working on removing the buzzing that occurs while using headphones. 
+   * SynMemoryTesting
+      *  Currently there is a storage problem where local memory erases saved creations when the phone needs space. This branch is trying to transfer the memory system to Ionic using Loki.js.   
