@@ -1,8 +1,13 @@
 notes = [];
 octaves = ['6', '5', '4'];
-//C Blues scale
-key = ['C', 'Eb', 'F', 'Gb', 'G', 'Bb'];
-noteDivider = 100.0/key.length;
+keys = {"black":['C', 'Eb', 'F', 'Gb', 'G', 'Bb'], //C Blues scale
+		"purple": ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb'], //C Minor scale
+		"blue": ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'], //F Major scale
+		"green": ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'], //E Major scale
+		"yellow": ['C', 'D', 'E', 'F', 'G', 'A', 'B'], //C Major scale
+		"red": ['Ab', 'Bb', 'Cb', 'Db', 'Eb', 'Fb', 'Gb']}; //A Flat Major scale
+currentKey = [];
+noteDivider = 0;
 octaveDivider = 100.0/octaves.length;
 octaveVolumes = {
 	'6' : 0.2,
@@ -11,6 +16,7 @@ octaveVolumes = {
 }
 musicPlaying = false;
 
+
 /** Returns a note, a String following the format of
 * Wad.js, containing both tone and octave
 * the argument is a line object
@@ -18,10 +24,9 @@ musicPlaying = false;
 function getNotePitch(line){
 	var startX = line.start[0];
 	var startY = line.start[1];
-
 	//find the note
 	var noteIndex = Math.floor(startX/noteDivider);
-	var pitch = key[noteIndex];
+	var pitch = currentKey[noteIndex];
 	//find the octave
 	var octaveIndex = Math.floor(startY/octaveDivider);
 	pitch = pitch.concat(octaves[octaveIndex]);
@@ -63,6 +68,23 @@ function lineToNote(line){
 
 
 function compileNotes(lines){
+	var count = 0;
+	var color = "";
+	var colorCount = {};
+	for (line in lines){
+		var lineColor = lines[line].color;
+		if (colorCount[lineColor] == null){
+			colorCount[lineColor] = 0;
+		}
+		colorCount[lineColor] += lines[line].lineLength;
+		if (colorCount[lineColor] > count){
+			count = colorCount[lineColor]
+			color = lineColor
+		}
+	}
+	currentKey = keys[color];
+	noteDivider = 100.0/currentKey.length;
+	console.log("Dominant Color is " + color + " and Current Scale is " + currentKey);
 	for(line in lines){
 		var note = lineToNote(lines[line]);
 		notes.push(note);
