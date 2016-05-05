@@ -34,6 +34,9 @@ function getNotePitch(line){
 	return pitch;
 }
 
+/**
+* Returns the duration of the note based on the line passed in
+**/
 function getNoteLength(line){
   var duration = line.lineLength / 60.0;
   if (duration < 0.1) {
@@ -42,6 +45,9 @@ function getNoteLength(line){
 	return duration;
 }
 
+/**
+* Returns the volume of the note based on which octave it is in
+**/
 function getNoteVolume(line){
 	var startY = line.start[1];
 
@@ -52,6 +58,9 @@ function getNoteVolume(line){
 	return volume;
 }
 
+/**
+* Creates a note object based on the line passed in and returns it
+**/
 function lineToNote(line){
 	var notePitch = getNotePitch(line);
 	var noteLength = getNoteLength(line);
@@ -66,8 +75,10 @@ function lineToNote(line){
 	return note;
 }
 
-
-function compileNotes(lines){
+/**
+* Determines what key the music is in based on the dominant color of the drawing
+**/
+function determineKey(){
 	var count = 0;
 	var color = "";
 	var colorCount = {};
@@ -85,6 +96,13 @@ function compileNotes(lines){
 	currentKey = keys[color];
 	noteDivider = 100.0/currentKey.length;
 	console.log("Dominant Color is " + color + " and Current Scale is " + currentKey);
+}
+
+/**
+* Converts all lines of the drawing into notes
+**/
+function compileNotes(lines){
+	determineKey();
 	for(line in lines){
 		var note = lineToNote(lines[line]);
 		notes.push(note);
@@ -92,7 +110,7 @@ function compileNotes(lines){
 }
 
 /**
-* plays the song from the notes array
+* starts the song from the notes array
 **/
 function startSong(lines){
 	if(!musicPlaying){
@@ -101,10 +119,12 @@ function startSong(lines){
 		compileNotes(lines); //TODO: this line for beta only. Will recompile notes every time you start the song.
 	  	window.setTimeout(1000000); //TODO: fix this so page loads first then plays; quick fix is manual pause so page loads first
 		playSong(0);
-		// return;
 	}
 }
 
+/**
+* Recursive method to play every note
+**/
 function playSong(noteIndex){
 	if(musicPlaying){
 	//seconds for notes, but must convert to milliseconds for pause
@@ -129,9 +149,10 @@ function playSong(noteIndex){
 	}
 }
 
+/**
+* Stops the music
+**/
 function stopMusic(){
-	//maybe think of a better method than clearing notes?
-	//when refactoring, could just manipulate noteIndex
 	clearNotes();
 	musicPlaying = false;
 
