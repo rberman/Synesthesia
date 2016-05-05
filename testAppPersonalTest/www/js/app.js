@@ -11,7 +11,7 @@ function onDeviceReady() {
   console.log("-------> it is ready", cordova.file);
 }
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngStorage', 'lokijs'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngStorage', 'lokijs', 'ngCordova'])
 
   .factory ('StorageService', function ($localStorage) {
 
