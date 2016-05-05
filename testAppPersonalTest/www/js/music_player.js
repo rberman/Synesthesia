@@ -132,9 +132,11 @@ function playSong(noteIndex){
 		var noteLength = notes[noteIndex].length;
 		var noteVolume = notes[noteIndex].volume;
 		var pause = noteLength*1000;
-
+		var attack = 0.0;
+		var decay = 0.0;
+		var release = 0.0;
 		//TODO: should replace random literal values with variables.
-		var note = getNote('sine', notePitch,0.0,0.0,noteVolume,noteLength,0.0);
+		var note = getNote('sine', notePitch, attack, decay, noteVolume, noteLength, release);
 		note.play();
 		console.log("Volume: " + noteVolume);
 		noteIndex++;
